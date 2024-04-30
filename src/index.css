@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.5s ease;
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: heading;
+  src: url(../src/fonts/SixCaps-Regular.ttf);
+}
+
+@font-face {
+  font-family: project;
+  src: url(../src/fonts/Teko-Light.ttf);
+}
+
+::selection {
+  color: #ecded5;
+  background: #DF5F24;
+}
+
+h1 {
+  font-size: 190px;
+  font-family: heading;
+  letter-spacing: 4px;
+  word-spacing: 10px;
+}
+
+h3 {
+  font-size: 40px;
+  line-height: 70px;
+}
+
+h2 {
+  font-size: 120px;
+  font-family: heading;
+  letter-spacing: 4px;
+  word-spacing: 10px;
+}
+
+li {
+  font-size: 17px;
+}
+
+.project-title {
+  letter-spacing: 5px;
+  font-family: project;
+}
+
+.cv {
+  filter: drop-shadow(0 0 0 #DF5F24);
+  animation: l2 0.9s infinite;
+}
+
+@keyframes l2 {
+  50% {
+    filter: drop-shadow(0 0 5px #DF5F24)
+  }
+}
+
+.loader {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  height: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    linear-gradient(#222 0 0) top/100% 40% no-repeat,
+    radial-gradient(farthest-side, #000 95%, #0000) 50%/8px 8px no-repeat #fff;
+  animation: l7 1.5s infinite alternate ease-in;
+}
+
+@keyframes l7 {
+
+  0%,
+  70% {
+    background-size: 100% 40%, 8px 8px
+  }
+
+  85% {
+    background-size: 100% 120%, 8px 8px
+  }
+
+  100% {
+    background-size: 100% 40%, 8px 8px
+  }
+}
+
+.loader-sleepy {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.loader-sleepy:before,
+.loader-sleepy:after {
+  content: "";
+  height: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    linear-gradient(#222 0 0) top/100% 0% no-repeat,
+    radial-gradient(farthest-side, #000 95%, #0000) 50%/8px 8px no-repeat #fff;
+  animation: l9 4s infinite ease-in;
+}
+
+@keyframes l9 {
+  0% {
+    background-size: 100% 0%, 8px 8px;
+    background-position: top, 50% 50%
+  }
+
+  80% {
+    background-size: 100% 70%, 8px 8px;
+    background-position: top, 50% 70%
+  }
+
+  84%,
+  100% {
+    background-size: 100% 0%, 8px 8px;
+    background-position: top, 50% 50%
+  }
+}
+
+.loaderdoi {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.loaderdoi:before,
+.loaderdoi:after {
+  content: "";
+  height: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/6px 6px no-repeat #fff;
+  transform: scaleX(var(--s, 1)) rotate(0deg);
+  animation: l6 1s infinite linear;
+}
+
+.loaderdoi:after {
+  --s: -1;
+  animation-delay: -0.1s;
+}
+
+@keyframes l6 {
+  100% {
+    transform: scaleX(var(--s, 1)) rotate(360deg);
+  }
+}
+
+.loaderdoido {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.loaderdoido:before,
+.loaderdoido:after {
+  content: "";
+  height: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/6px 6px no-repeat #fff;
+  animation: l5 3s infinite;
+}
+
+@keyframes l5 {
+
+  0%,
+  11% {
+    background-position: 35% 35%
+  }
+
+  14%,
+  36% {
+    background-position: 65% 35%
+  }
+
+  38%,
+  61% {
+    background-position: 65% 65%
+  }
+
+  64%,
+  86% {
+    background-position: 35% 65%
+  }
+
+  88%,
+  100% {
+    background-position: 35% 35%
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background:#ecded5;
+}
+
+::-webkit-scrollbar-thumb {
+  background:#DF5F24;
+  border-radius:10px 10px 10px 10px;
+}

@@ -1,0 +1,40 @@
+@media (max-width:888px) {
+    .cursor{
+        display: none;
+    }
+}
+
+@media (max-width:430px) {
+    h1 {
+        font-size: 165px;
+    }
+
+    .py-28 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    h3 {
+        font-size: 30px;
+        line-height: 65px;
+    }
+
+    .text-4xl {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width:362px) {
+    .px-11 {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+    h2 {
+        font-size: 110px;
+    }
+
+    h1 {
+        font-size: 155px;
+    }
+}
