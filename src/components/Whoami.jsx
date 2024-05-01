@@ -12,7 +12,7 @@ const Whoami = () => {
                         <div>
                             <h3 className='font-light'>
                                 It’s hard to label me <br />
-                                but I can certainly <a href="https://drive.google.com/file/d/1Iuz19p2Qqpsesqu6j2O6_srt5PLm89Cr/view?usp=sharing" target='_blank' className='cv text-decoration-none'><span className='font-bold'>share</span></a> a little bit about myself
+                                but I can certainly <a href="https://drive.google.com/file/d/1UkdSa_SGCQ1fjQEYnAhIBwNZAQwxCaDD/view?usp=sharing" target='_blank' className='cv text-decoration-none'><span className='font-bold'>share</span></a> a little bit about myself
                             </h3>
                         </div>
                     </div>
