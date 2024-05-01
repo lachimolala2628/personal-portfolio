@@ -21,7 +21,7 @@ const Coffee = () => {
                             </h3>
                         </div>
                         <div className='py-20 flex justify-start items-center'>
-                            <a href="https://www.linkedin.com/in/ayush-kumar-32856025a" target='blank' className='uppercase font-bold flex justify-center items-center gap-x-2 px-11'><BsLinkedin /> linkedin</a>
+                            <a href="https://www.linkedin.com/in/ayush-kumar2822" target='blank' className='uppercase font-bold flex justify-center items-center gap-x-2 px-11'><BsLinkedin /> linkedin</a>
                             <a href="mailto:aayushkumar1228@gmail.com" className='uppercase font-bold flex justify-center items-center gap-x-2'><BsEnvelope /> Say hello</a>
                         </div>
                     </div>
