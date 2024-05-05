@@ -28,7 +28,7 @@ const Projects = () => {
                 />
                 <Link
                     heading="Expense Tracker"
-                    imgSrc="https://i.pinimg.com/736x/fb/28/73/fb28739f0dbf4c70634d2d15160aa7bf.jpg"
+                    imgSrc="https://i.pinimg.com/736x/1b/cf/cc/1bcfcca5c30b2eca799cd48ba4dd71fb.jpg"
                     href="https://expense-tracker-v4ku.onrender.com"
                 />
                 <Link
