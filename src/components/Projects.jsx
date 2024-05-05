@@ -32,7 +32,7 @@ const Projects = () => {
                     href="https://expense-tracker-v4ku.onrender.com"
                 />
                 <Link
-                    heading="Ecommerce"
+                    heading="E - commerce"
                     imgSrc="https://i.pinimg.com/736x/35/0f/9d/350f9d7c5c74874b69fcc484a5b87f2b.jpg"
                     href="https://e-commerce-1oyc.onrender.com"
                 />
@@ -42,9 +42,9 @@ const Projects = () => {
                     href="https://weather-app-pacy.onrender.com"
                 />
                 <Link
-                    heading="3D Card"
-                    imgSrc="https://i.pinimg.com/736x/6f/de/65/6fde65ea368946dec044bdd6fdc2395c.jpg"
-                    href="https://threed-card-41u2.onrender.com"
+                    heading="Todo - List"
+                    imgSrc="https://i.pinimg.com/736x/a0/74/f3/a074f36423c97ba2f5b473dee9bd8932.jpg"
+                    href="https://todo-list-k10j.onrender.com"
                 />
             </div>
         </section>
