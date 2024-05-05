@@ -17,7 +17,7 @@ const Projects = () => {
                     href="https://holyherbs.in/"
                 />
                 <Link
-                    heading="iPhone clone"
+                    heading="Apple Website clone"
                     imgSrc="https://i.pinimg.com/736x/b8/af/de/b8afdeed23cb31b052c77a1062385d32.jpg"
                     href="https://apple-website-clone-6xku.onrender.com"
                 />
