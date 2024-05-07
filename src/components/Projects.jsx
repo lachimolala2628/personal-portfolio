@@ -7,17 +7,17 @@ const Projects = () => {
         <section className="py-28">
             <div className="mx-auto max-w-full">
                 <Link
-                    heading="Oraanj - interior design"
+                    heading="Oraanj - Interior Design"
                     imgSrc="https://i.pinimg.com/736x/07/f6/7f/07f67fdc52368ebfa020c7309a86d8e8.jpg"
                     href="https://www.oraanj-interiors.co.uk/"
                 />
                 <Link
-                    heading="Holy herbs"
+                    heading="Holy Herbs"
                     imgSrc="https://i.pinimg.com/736x/dc/b5/14/dcb51474355d1672402d89a67b6b04c6.jpg"
                     href="https://holyherbs.in/"
                 />
                 <Link
-                    heading="Apple Website clone"
+                    heading="Apple Website Clone"
                     imgSrc="https://i.pinimg.com/736x/b8/af/de/b8afdeed23cb31b052c77a1062385d32.jpg"
                     href="https://apple-website-clone-6xku.onrender.com"
                 />
@@ -32,7 +32,7 @@ const Projects = () => {
                     href="https://expense-tracker-v4ku.onrender.com"
                 />
                 <Link
-                    heading="E - commerce"
+                    heading="E - Commerce"
                     imgSrc="https://i.pinimg.com/736x/35/0f/9d/350f9d7c5c74874b69fcc484a5b87f2b.jpg"
                     href="https://e-commerce-1oyc.onrender.com"
                 />
