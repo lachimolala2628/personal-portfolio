@@ -124,9 +124,9 @@ button:hover .go {
 .go {
   position: absolute;
   top: -10%;
-  left: 44%;
-  font-size: 25px;
-  font-weight: 900;
+  left: 36%;
+  font-size: 23px;
+  font-weight: 700;
   letter-spacing: 1px;
 }
 
@@ -154,12 +154,12 @@ button:hover .go {
 
 .pword {
   top: -25%;
-  left: 72%;
+  left: 68%;
 }
 
 .pword2 {
-  top: -10%;
-  left: 75%;
+  top: -9%;
+  left: 73%;
 }
 
 button:hover .pword,
