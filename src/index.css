@@ -21,7 +21,7 @@
 }
 
 ::selection {
-  color: #ecded5;
+  color: #FEFCE1;
   background: #DF5F24;
 }
 
@@ -189,6 +189,7 @@ button:hover .pword2 {
     linear-gradient(#222 0 0) top/100% 40% no-repeat,
     radial-gradient(farthest-side, #000 95%, #0000) 50%/8px 8px no-repeat #fff;
   animation: l7 1.5s infinite alternate ease-in;
+  box-shadow: 0px 0px 10px #000;
 }
 
 @keyframes l7 {
@@ -222,6 +223,7 @@ button:hover .pword2 {
     linear-gradient(#222 0 0) top/100% 0% no-repeat,
     radial-gradient(farthest-side, #000 95%, #0000) 50%/8px 8px no-repeat #fff;
   animation: l9 4s infinite ease-in;
+  box-shadow: 0px 0px 10px #000;
 }
 
 @keyframes l9 {
@@ -257,6 +259,7 @@ button:hover .pword2 {
     radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/6px 6px no-repeat #fff;
   transform: scaleX(var(--s, 1)) rotate(0deg);
   animation: l6 1s infinite linear;
+  box-shadow: 0px 0px 10px #000;
 }
 
 .loaderdoi:after {
@@ -284,6 +287,7 @@ button:hover .pword2 {
   background:
     radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/6px 6px no-repeat #fff;
   animation: l5 3s infinite;
+  box-shadow: 0px 0px 10px #000;
 }
 
 @keyframes l5 {
@@ -319,7 +323,7 @@ button:hover .pword2 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #ecded5;
+  background: #FEFCE1;
 }
 
 ::-webkit-scrollbar-thumb {

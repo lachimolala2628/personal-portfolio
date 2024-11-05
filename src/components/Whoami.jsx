@@ -20,7 +20,7 @@ const Whoami = () => {
                                         <span class="pword font-semibold">CLICK </span>
                                         <span class="pword2 font-semibold">ME !!</span>
                                     </button>
-                                </a> a little bit about myself
+                                </a> a little bit about myself.
                             </h3>
                         </div>
                     </div>
