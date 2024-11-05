@@ -6,7 +6,7 @@
 
 @media (max-width:430px) {
     h1 {
-        font-size: 165px;
+        font-size: 160px;
     }
 
     .py-28 {
@@ -15,26 +15,16 @@
     }
 
     h3 {
-        font-size: 28px;
-        line-height: 50px;
+        font-size: 23px;
+        line-height: 42px;
+    }
+
+    h2 {
+        font-size: 115px;
     }
 
     .text-4xl {
-        font-size: 1.5rem;
-    }
-
-    .go{
-        top:6%;
-    }
-
-    .pword2 {
-        top: 10%;
-        left: 75%;
-    }
-
-    .pword {
-        top: -8%;
-        left: 72%;
+        font-size: 1.9rem;
     }
 }
 
@@ -45,10 +35,16 @@
     }
 
     h2 {
-        font-size: 110px;
+        font-size: 95px;
     }
 
     h1 {
-        font-size: 155px;
+        font-size: 130px;
+    }
+
+    h3 {
+        font-size: 20px;
+        line-height: 40px;
+        text-align: justify;
     }
 }

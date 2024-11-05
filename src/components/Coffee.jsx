@@ -15,7 +15,7 @@ const Coffee = () => {
                             <div className='loader-sleepy'></div>
                         </div>
                         <div>
-                            <h3 className='font-light'>
+                            <h3 className='font-extralight'>
                                 I also make a great coffee. <br />
                                 Let’s get in touch and maybe share one someday.
                             </h3>

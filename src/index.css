@@ -48,8 +48,12 @@ li {
   font-size: 17px;
 }
 
+.cv{
+  font-style: italic;
+}
+
 .project-title {
-  letter-spacing: 5px;
+  letter-spacing:1px;
   font-family: project;
 }
 

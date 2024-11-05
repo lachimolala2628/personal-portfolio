@@ -9,7 +9,7 @@ const Canido = () => {
                         <h2 className='font-bold'>Can I Do <br />Everything?</h2>
                     </div>
                     <div>
-                        <h3 className='font-light'>
+                        <h3 className='font-extralight'>
                             Of course not. <br />
                             But I team up with skilled freelancers and creative companies to cover all the bases.
                             Together, we’ll bring your vision to life.
