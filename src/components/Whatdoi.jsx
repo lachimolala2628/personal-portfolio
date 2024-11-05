@@ -11,7 +11,7 @@ const Whatdoi = () => {
                         </div>
                         <div>
                             <h3 className='font-extralight pt-10'>
-                                My name is Ayush kumar <span className='loaderdoido'></span>. I’m 19 and I am from New Delhi, India. yes, you were heard correctly. I'm a Creative Frontend Developer (Addict) <span className='loaderdoi'></span>. and I work as a freelancer. I have spent time converting designs into pixel-perfect, performant, accessible and responsive websites. I have always been excited about the entire development spectrum, so I frequently engage in my work. I am probably reading a book or listening to music when I am not creating or discovering new experiences on the internet.
+                            <span className='loaderdoido'></span> My name is Ayush Kumar. I’m 19 years old and I’m from New Delhi, India. Yes, you heard that right — I am a Creative Frontend Developer (addict). <span className='loaderdoi'></span> and I work as a freelancer. I specialize in converting designs into pixel-perfect, high-performance, accessible, and responsive websites. I have a strong enthusiasm for the entire development spectrum, which keeps me actively engaged in my work. When I'm not creating or exploring new experiences online, you can likely find me reading a book or listening to music.
                             </h3>
                         </div>
                     </div>
