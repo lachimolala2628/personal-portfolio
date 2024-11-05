@@ -22,11 +22,6 @@ const Projects = () => {
                     href="https://apple-website-clone-6xku.onrender.com"
                 />
                 <Link
-                    heading="Dashboard UI"
-                    imgSrc="https://i.pinimg.com/736x/52/86/b4/5286b4f0706707b4a2a2b4abd2fc0f76.jpg"
-                    href="https://dashboard-ui-jdnm.onrender.com"
-                />
-                <Link
                     heading="Expense Tracker"
                     imgSrc="https://i.pinimg.com/736x/1b/cf/cc/1bcfcca5c30b2eca799cd48ba4dd71fb.jpg"
                     href="https://expense-tracker-v4ku.onrender.com"
