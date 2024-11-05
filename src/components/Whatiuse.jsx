@@ -31,6 +31,10 @@ const Whatiuse = () => {
                                 <li>react js</li>
                             </ul>
                             <ul className='py-2 uppercase px-3 flex justify-between items-center'>
+                                <li>typescript</li>
+                                <li>next js</li>
+                            </ul>
+                            <ul className='py-2 uppercase px-3 flex justify-between items-center'>
                                 <li>github</li>
                                 <li>seo</li>
                             </ul>
