@@ -22,6 +22,16 @@ const Projects = () => {
                     href="https://apple-website-clone-6xku.onrender.com"
                 />
                 <Link
+                    heading="Hilink"
+                    imgSrc="https://i.pinimg.com/736x/e6/76/c7/e676c777b565b455d5b59c06eed3e30b.jpg"
+                    href="https://hilink-rosy.vercel.app"
+                />
+                <Link
+                    heading="Zenbrew"
+                    imgSrc="https://i.pinimg.com/736x/db/1a/e2/db1ae20d4e56ec5c8c9941d7fdd3cbb7.jpg"
+                    href="https://zenbrew-wheat.vercel.app"
+                />
+                <Link
                     heading="Expense Tracker"
                     imgSrc="https://i.pinimg.com/736x/1b/cf/cc/1bcfcca5c30b2eca799cd48ba4dd71fb.jpg"
                     href="https://expense-tracker-v4ku.onrender.com"
