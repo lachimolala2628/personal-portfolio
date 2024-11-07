@@ -11,7 +11,7 @@ const Whatdoi = () => {
                         </div>
                         <div>
                             <h3 className='font-extralight pt-10'>
-                            <span className='loaderdoido'></span> My name is Ayush Kumar. I’m 19 years old and I’m from New Delhi, India. Yes, you heard that right — I am a Creative Frontend Developer (addict). <span className='loaderdoi'></span> and I work as a freelancer. I specialize in converting designs into pixel-perfect, high-performance, accessible, and responsive websites. I have a strong enthusiasm for the entire development spectrum, which keeps me actively engaged in my work. When I'm not creating or exploring new experiences online, you can likely find me reading a book or listening to music.
+                                <span className='loaderdoido'></span> Hello! I’m Ayush Kumar, a 19-year-old Creative Frontend Developer hailing from New Delhi, India. It’s true — I’m passionate about my craft and work as a freelancer. My expertise lies in transforming designs into pixel-perfect, high-performance, accessible, and responsive websites. I thrive on the entire development process, which fuels my enthusiasm and keeps me deeply engaged in my projects. Outside of my professional life, I enjoy diving into a good book or immersing myself in music, <span className='loaderdoi'></span> which often inspires my creativity and helps me recharge.
                             </h3>
                         </div>
                     </div>
