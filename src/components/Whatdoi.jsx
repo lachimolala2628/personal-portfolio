@@ -11,7 +11,14 @@ const Whatdoi = () => {
                         </div>
                         <div>
                             <h3 className='font-extralight pt-10'>
-                                <span className='loaderdoido'></span> Hello! I’m Ayush Kumar, a 19-year-old Creative Frontend Developer hailing from New Delhi, India. It’s true — I’m passionate about my craft and work as a freelancer. My expertise lies in transforming designs into pixel-perfect, high-performance, accessible, and responsive web applications. I thrive on the entire development process, which fuels my enthusiasm and keeps me deeply engaged in my projects. Outside of my professional life, I enjoy diving into a good book or immersing myself in music, <span className='loaderdoi'></span> which often inspires my creativity and helps me recharge.
+                                <span className='loaderdoido'></span> Hello! My name is Ayush Kumar, I’m a 19-year-old Creative Frontend Developer from New Delhi, India.  I love building high-quality, high-performance, and responsive web applications. I can turn any design into a perfect digital experience.  What I love the most that keeps the inner me engaged in the development process is the complete process from ideation to execution.
+                            </h3>
+                            <h3 className='font-extralight py-10'>
+                                My work is not merely a profession; it is a craft that I take pride in. Making sure that things are accessible and optimising each detail for responsiveness and polish.
+                            </h3>
+
+                            <h3 className='font-extralight'>
+                                When I am not coding, I like to read or listen to music to relax. Doing these hobbies help me relax and think creatively which then gives me ideas for my work. Balancing work with these hobbies allow me to stay creative and keep pushing the envelope in frontend development.  <span className='loaderdoi'></span>
                             </h3>
                         </div>
                     </div>
