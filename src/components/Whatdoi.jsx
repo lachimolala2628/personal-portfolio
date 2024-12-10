@@ -18,7 +18,7 @@ const Whatdoi = () => {
                             </h3>
 
                             <h3 className='font-extralight'>
-                            <span className='loaderdoi'></span>  When I am not coding, I like to read or listen to music to relax. Doing these hobbies help me relax and think creatively which then gives me ideas for my work. Balancing work with these hobbies allow me to stay creative and keep pushing the envelope in frontend development.  
+                            When I am not coding  <span className='loaderdoi'></span> , I like to read or listen to music to relax. Doing these hobbies help me relax and think creatively which then gives me ideas for my work. Balancing work with these hobbies allow me to stay creative and keep pushing the envelope in frontend development.  
                             </h3>
                         </div>
                     </div>
