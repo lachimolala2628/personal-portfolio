@@ -10,9 +10,7 @@ const Canido = () => {
                     </div>
                     <div>
                         <h3 className='font-extralight'>
-                            Of course not. <br />
-                            But I team up with skilled freelancers and creative companies to cover all the bases.
-                            Together, we’ll bring your vision to life.
+                        While I may not do everything myself <span className='loaderdoi'></span> , I collaborate with a network of <span className='sp'>skilled freelancers</span> and <span className='sp'>creative companies</span> to ensure every aspect is covered. Together, we’ll turn your vision into reality.
                         </h3>
                     </div>
                 </div>

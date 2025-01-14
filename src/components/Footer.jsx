@@ -1,10 +1,13 @@
 import React from 'react'
 
 const Footer = () => {
+
+    const currentYear = new Date().getFullYear();
+
     return (
         <>
             <footer>
-                <div className="mx-auto max-w-full p-6">
+                <div className="mx-auto max-w-full p-6 text-[#1F1F1F]">
                     <dl className="grid grid-cols-1 gap-y-4 text-center lg:grid-cols-3">
                         <div>
                             <a href="mailto:aayushkumar1228@gmail.com" className='text-sm uppercase'>
@@ -18,7 +21,7 @@ const Footer = () => {
                         </div>
                         <div>
                             <span className='text-sm uppercase'>
-                                &copy;2024
+                                &copy;{currentYear}
                             </span>
                         </div>
                     </dl>

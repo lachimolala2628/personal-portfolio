@@ -15,10 +15,6 @@ const Whatiuse = () => {
                                 <li>css 3</li>
                             </ul>
                             <ul className='py-2 uppercase px-3 flex justify-between items-center'>
-                                <li>bootstrap 5</li>
-                                <li>animate css</li>
-                            </ul>
-                            <ul className='py-2 uppercase px-3 flex justify-between items-center'>
                                 <li>tailwind css</li>
                                 <li>material mui</li>
                             </ul>
@@ -44,7 +40,7 @@ const Whatiuse = () => {
                             </ul>
                             <ul className='py-2 uppercase px-3 flex justify-between items-center'>
                                 <li>wordpress</li>
-                                <li>webflow</li>
+                                <li>bootstrap 5</li>
                             </ul>
                             <ul className='py-2 uppercase px-3 flex justify-between items-center'>
                                 <li>shopify</li>

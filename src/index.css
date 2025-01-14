@@ -20,9 +20,18 @@
   src: url(../src/fonts/Teko-Light.ttf);
 }
 
+@font-face {
+  font-family: sp-character;
+  src: url(../src/fonts/Britney-Regular.otf);
+}
+
 ::selection {
-  color: #FEFCE1;
-  background: #DF5F24;
+  color: #F9F4E8;
+  background: #1F1F1F;
+}
+
+.sp{
+  font-family: sp-character;
 }
 
 h1 {
@@ -48,12 +57,8 @@ li {
   font-size: 17px;
 }
 
-.cv{
-  font-style: italic;
-}
-
 .project-title {
-  letter-spacing:1px;
+  letter-spacing: 1px;
   font-family: project;
 }
 
@@ -206,10 +211,10 @@ li {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FEFCE1;
+  background: #F9F4E8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #DF5F24;
+  background: #1F1F1F;
   border-radius: 10px 10px 10px 10px;
 }

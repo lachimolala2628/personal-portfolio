@@ -16,13 +16,13 @@ const Coffee = () => {
                         </div>
                         <div>
                             <h3 className='font-extralight'>
-                                I also make a great coffee. <br />
-                                Let’s get in touch and maybe share one someday.
+                                I make great coffee. <br />
+                                <span className='sp'>Let’s connect</span> and maybe enjoy a cup together sometime.
                             </h3>
                         </div>
                         <div className='py-20 flex justify-start items-center'>
-                            <a href="https://www.linkedin.com/in/ayush-kumar2822" target='blank' className='uppercase font-bold flex justify-center items-center gap-x-2 px-11'><BsLinkedin /> linkedin</a>
-                            <a href="mailto:aayushkumar1228@gmail.com" className='uppercase font-bold flex justify-center items-center gap-x-2'><BsEnvelope /> Say hello</a>
+                            <a href="https://www.linkedin.com/in/ayush-kumar2822" target='blank' className='uppercase font-bold flex justify-center items-center gap-x-2 px-11 text-[#1F1F1F]'><BsLinkedin /> linkedin</a>
+                            <a href="mailto:aayushkumar1228@gmail.com" className='uppercase font-bold flex justify-center items-center gap-x-2 text-[#1F1F1F]'><BsEnvelope /> Say hello</a>
                         </div>
                     </div>
                 </div>

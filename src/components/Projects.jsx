@@ -37,11 +37,6 @@ const Projects = () => {
                     href="https://expense-tracker-v4ku.onrender.com"
                 />
                 <Link
-                    heading="E - Commerce"
-                    imgSrc="https://i.pinimg.com/736x/35/0f/9d/350f9d7c5c74874b69fcc484a5b87f2b.jpg"
-                    href="https://e-commerce-1oyc.onrender.com"
-                />
-                <Link
                     heading="Weather App"
                     imgSrc="https://i.pinimg.com/736x/e8/58/f5/e858f53565ffe5ad97d92138c8be7ca5.jpg"
                     href="https://weather-app-pacy.onrender.com"
@@ -92,7 +87,7 @@ const Link = ({ heading, imgSrc, href }) => {
             onMouseMove={handleMouseMove}
             initial="initial"
             whileHover="whileHover"
-            className="group relative flex items-center justify-between border-b-2 border-[#DF5F24] py-4 transition-colors duration-500 hover:border-[#DF5F24] md:py-8"
+            className="group relative flex items-center justify-between border-b-2 border-[#1F1F1F] py-4 transition-colors duration-500 hover:border-[#1F1F1F] md:py-8"
         >
             <div>
                 <motion.span
@@ -105,7 +100,7 @@ const Link = ({ heading, imgSrc, href }) => {
                         staggerChildren: 0.075,
                         delayChildren: 0.25,
                     }}
-                    className="project-title relative z-10 block text-4xl font-bold text-[#DF5F24] transition-colors duration-500 group-hover:text-[#DF5F24] md:text-6xl"
+                    className="project-title relative z-10 block text-4xl font-bold text-[#1F1F1F] transition-colors duration-500 group-hover:text-[#1F1F1F] md:text-6xl"
                 >
                     {heading.split("").map((l, i) => (
                         <motion.span
@@ -154,7 +149,7 @@ const Link = ({ heading, imgSrc, href }) => {
                 transition={{ type: "spring" }}
                 className="relative z-10 p-4"
             >
-                <FiArrowRight className="text-5xl text-[#DF5F24]" />
+                <FiArrowRight className="text-5xl text-[#1F1F1F]" />
             </motion.div>
         </motion.a>
     );

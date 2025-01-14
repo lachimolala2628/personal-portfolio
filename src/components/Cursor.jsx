@@ -51,7 +51,7 @@ const Cursor = () => {
 
     return (
         <>
-            <div ref={circle} className='cursor fixed top-0 left-0 border-2 border-[#DF5F24] rounded-full' style={{ height: size, width: size, }}></div>
+            <div ref={circle} className='cursor fixed top-0 left-0 border-2 border-[#1F1F1F] rounded-full' style={{ height: size, width: size, }}></div>
         </>
     )
 }
