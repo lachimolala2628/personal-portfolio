@@ -16,7 +16,6 @@ const Coffee = () => {
                         </div>
                         <div>
                             <h3 className='font-extralight'>
-                                I make great coffee. <br />
                                 <span className='sp'>Let’s connect</span> and maybe enjoy a cup together sometime.
                             </h3>
                         </div>
