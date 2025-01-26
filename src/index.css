@@ -26,8 +26,8 @@
 }
 
 ::selection {
-  color: #F9F4E8;
-  background: #1F1F1F;
+  color: #317039;
+  background: #fff1d4;
 }
 
 .sp{
@@ -211,10 +211,10 @@ li {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F9F4E8;
+  background: #317039;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1F1F1F;
+  background: #fff1d4;
   border-radius: 10px 10px 10px 10px;
 }
