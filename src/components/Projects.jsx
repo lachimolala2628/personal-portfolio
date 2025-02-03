@@ -87,7 +87,7 @@ const Link = ({ heading, imgSrc, href }) => {
             onMouseMove={handleMouseMove}
             initial="initial"
             whileHover="whileHover"
-            className="group relative flex items-center justify-between border-b-2 border-[#fff1d4] py-4 transition-colors duration-500 hover:border-[#fff1d4] md:py-8"
+            className="group relative flex items-center justify-between border-b-2 border-[#457b9d] py-4 transition-colors duration-500 hover:border-[#457b9d] md:py-8"
         >
             <div>
                 <motion.span
@@ -100,7 +100,7 @@ const Link = ({ heading, imgSrc, href }) => {
                         staggerChildren: 0.075,
                         delayChildren: 0.25,
                     }}
-                    className="project-title relative z-10 block text-4xl font-bold text-[#fff1d4] transition-colors duration-500 group-hover:text-[#fff1d4] md:text-6xl"
+                    className="project-title relative z-10 block text-4xl font-bold text-[#457b9d] transition-colors duration-500 group-hover:text-[#457b9d] md:text-6xl"
                 >
                     {heading.split("").map((l, i) => (
                         <motion.span
@@ -149,7 +149,7 @@ const Link = ({ heading, imgSrc, href }) => {
                 transition={{ type: "spring" }}
                 className="relative z-10 p-4"
             >
-                <FiArrowRight className="text-5xl text-[#fff1d4]" />
+                <FiArrowRight className="text-5xl text-[#457b9d]" />
             </motion.div>
         </motion.a>
     );

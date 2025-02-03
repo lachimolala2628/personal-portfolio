@@ -15,7 +15,7 @@ import Cursor from './components/Cursor';
 
 const App = () => {
   return (
-    <div className="relative min-h-screen bg-[#317039] px-8 text-[#fff1d4]">
+    <div className="relative min-h-screen bg-[#f1faee] px-8 text-[#457b9d]">
       <Cursor />
       <Header />
       <Whoami />
