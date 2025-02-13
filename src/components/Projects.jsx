@@ -42,9 +42,9 @@ const Projects = () => {
                     href="https://weather-app-pacy.onrender.com"
                 />
                 <Link
-                    heading="Todo - List"
-                    imgSrc="https://i.pinimg.com/736x/a0/74/f3/a074f36423c97ba2f5b473dee9bd8932.jpg"
-                    href="https://todo-list-k10j.onrender.com"
+                    heading="Pomodoro Timer"
+                    imgSrc="https://i.pinimg.com/736x/ed/f9/43/edf9431d164cd0c8e005e82ffc11b363.jpg"
+                    href="https://pomodoro-timer-nine-olive.vercel.app"
                 />
             </div>
         </section>

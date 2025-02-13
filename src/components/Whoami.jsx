@@ -13,7 +13,7 @@ const Whoami = () => {
                         <div>
                             <h3 className='font-extralight'>
                                 It’s hard to label me <br />
-                                but I can certainly <a href="https://drive.google.com/file/d/1oCGMEwAcGBO24IJrp22yyq6aCYqJW8-1/view?usp=sharing" target='_blank' className='text-decoration-none sp text-[#e63946]'>
+                                but I can certainly <a href="https://drive.google.com/file/d/1gfYK_9ITePO9I9eOfvQy69ao_ZvzFQHk/view?usp=sharing" target='_blank' className='text-decoration-none sp text-[#e63946]'>
                                     <span className="relative">
                                         "share" 
                                         <svg
