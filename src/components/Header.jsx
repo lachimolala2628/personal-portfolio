@@ -5,7 +5,7 @@ const Header = () => {
         <>
             <header>
                 <nav className="mx-auto flex max-w-full items-center justify-between p-6">
-                    <div className='text-[#e63946]'>
+                    <div className='text-[#C9C7BA]'>
                         <a href="#" className="text-base font-bold uppercase">
                             Ayush Kumar
                             <br />

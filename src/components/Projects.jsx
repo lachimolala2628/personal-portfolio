@@ -22,21 +22,6 @@ const Projects = () => {
                     href="https://apple-website-clone-6xku.onrender.com"
                 />
                 <Link
-                    heading="Hilink"
-                    imgSrc="https://i.pinimg.com/736x/e6/76/c7/e676c777b565b455d5b59c06eed3e30b.jpg"
-                    href="https://hilink-rosy.vercel.app"
-                />
-                <Link
-                    heading="Zenbrew"
-                    imgSrc="https://i.pinimg.com/736x/db/1a/e2/db1ae20d4e56ec5c8c9941d7fdd3cbb7.jpg"
-                    href="https://zenbrew-wheat.vercel.app"
-                />
-                <Link
-                    heading="Expense Tracker"
-                    imgSrc="https://i.pinimg.com/736x/1b/cf/cc/1bcfcca5c30b2eca799cd48ba4dd71fb.jpg"
-                    href="https://expense-tracker-v4ku.onrender.com"
-                />
-                <Link
                     heading="Weather App"
                     imgSrc="https://i.pinimg.com/736x/e8/58/f5/e858f53565ffe5ad97d92138c8be7ca5.jpg"
                     href="https://weather-app-pacy.onrender.com"
@@ -45,6 +30,21 @@ const Projects = () => {
                     heading="Pomodoro Timer"
                     imgSrc="https://i.pinimg.com/736x/ed/f9/43/edf9431d164cd0c8e005e82ffc11b363.jpg"
                     href="https://pomodoro-timer-nine-olive.vercel.app"
+                />
+                <Link
+                    heading="Expense Tracker"
+                    imgSrc="https://i.pinimg.com/736x/1b/cf/cc/1bcfcca5c30b2eca799cd48ba4dd71fb.jpg"
+                    href="https://expense-tracker-v4ku.onrender.com"
+                />
+                <Link
+                    heading="Hilink"
+                    imgSrc="https://i.pinimg.com/736x/e6/76/c7/e676c777b565b455d5b59c06eed3e30b.jpg"
+                    href="https://hilink-rosy.vercel.app"
+                />
+                <Link
+                    heading="Zenbrew"
+                    imgSrc="https://i.pinimg.com/736x/db/1a/e2/db1ae20d4e56ec5c8c9941d7fdd3cbb7.jpg"
+                    href="https://zenbrew-wheat.vercel.app"
                 />
             </div>
         </section>
@@ -87,7 +87,7 @@ const Link = ({ heading, imgSrc, href }) => {
             onMouseMove={handleMouseMove}
             initial="initial"
             whileHover="whileHover"
-            className="group relative flex items-center justify-between border-b-2 border-[#457b9d] py-4 transition-colors duration-500 hover:border-[#457b9d] md:py-8"
+            className="group relative flex items-center justify-between border-b-2 border-[#C9C7BA] py-4 transition-colors duration-500 hover:border-[#C9C7BA] md:py-8"
         >
             <div>
                 <motion.span
@@ -100,7 +100,7 @@ const Link = ({ heading, imgSrc, href }) => {
                         staggerChildren: 0.075,
                         delayChildren: 0.25,
                     }}
-                    className="project-title relative z-10 block text-4xl font-bold text-[#457b9d] transition-colors duration-500 group-hover:text-[#457b9d] md:text-6xl"
+                    className="project-title relative z-10 block text-4xl font-bold text-[#C9C7BA] transition-colors duration-500 group-hover:text-[#C9C7BA] md:text-6xl"
                 >
                     {heading.split("").map((l, i) => (
                         <motion.span
@@ -149,7 +149,7 @@ const Link = ({ heading, imgSrc, href }) => {
                 transition={{ type: "spring" }}
                 className="relative z-10 p-4"
             >
-                <FiArrowRight className="text-5xl text-[#457b9d]" />
+                <FiArrowRight className="text-5xl text-[#C9C7BA]" />
             </motion.div>
         </motion.a>
     );

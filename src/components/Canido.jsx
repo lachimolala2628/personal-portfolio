@@ -10,7 +10,7 @@ const Canido = () => {
                     </div>
                     <div>
                         <h3 className='font-extralight'>
-                        While I may not do everything myself <span className='loaderdoi'></span> , I collaborate with a network of <span className='sp text-[#e63946]'>skilled freelancers</span> and <span className='sp text-[#e63946]'>creative companies</span> to ensure every aspect is covered. Together, we’ll turn your vision into reality.
+                        While I may not do everything myself <span className='loaderdoi'></span> , I collaborate with a network of <span className='sp text-[#C9C7BA]'>skilled freelancers</span> and <span className='sp text-[#C9C7BA]'>creative companies</span> to ensure every aspect is covered. Together, we’ll turn your vision into reality.
                         </h3>
                     </div>
                 </div>

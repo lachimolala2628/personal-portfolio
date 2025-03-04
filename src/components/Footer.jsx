@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <>
             <footer>
-                <div className="mx-auto max-w-full p-6 text-[#e63946]">
+                <div className="mx-auto max-w-full p-6 text-[#C9C7BA]">
                     <dl className="grid grid-cols-1 gap-y-4 text-center lg:grid-cols-3">
                         <div>
                             <a href="mailto:aayushkumar1228@gmail.com" className='text-sm uppercase'>
