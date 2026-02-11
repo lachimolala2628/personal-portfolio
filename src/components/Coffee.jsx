@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsEnvelope } from "react-icons/bs";
+import { FaGithub } from "react-icons/fa";
 import { BsLinkedin } from "react-icons/bs";
 
 const Coffee = () => {
@@ -21,7 +21,7 @@ const Coffee = () => {
                         </div>
                         <div className='py-20 flex justify-start items-center'>
                             <a href="https://www.linkedin.com/in/ayush-kumar2822" target='blank' className='uppercase sp flex justify-center items-center gap-x-2 px-11 text-[#C9C7BA]'><BsLinkedin /> linkedin</a>
-                            <a href="mailto:aayushkumar1228@gmail.com" className='uppercase sp flex justify-center items-center gap-x-2 text-[#C9C7BA]'><BsEnvelope /> Say hello</a>
+                            <a href="https://github.com/lachimolala2628" target='blank' className='uppercase sp flex justify-center items-center gap-x-2 text-[#C9C7BA]'><FaGithub /> github</a>
                         </div>
                     </div>
                 </div>
