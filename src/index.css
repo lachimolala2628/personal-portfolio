@@ -2,219 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Boxing';
+    src: url('./fonts/Boxing-Regular.otf') format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Britney';
+    src: url('./fonts/Britney-Regular.otf') format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SixCaps';
+    src: url('./fonts/SixCaps-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Teko';
+    src: url('./fonts/Teko-Light.ttf') format('truetype');
+    font-display: swap;
+}
+
+:root {
+    /* Colors */
+    --color-bg: #1a1a1a;
+    --color-surface: #262626;
+    --color-surface-elevated: #2e2e2e;
+    --color-border: #404040;
+    --color-text-primary: #e5e5e5;
+    --color-text-secondary: #a3a3a3;
+    --color-accent: #d4c9a8;
+    /* your cream/tan accent from the current design */
+
+    /* Window-specific */
+    --titlebar-height: 40px;
+    --taskbar-height: 56px;
+    --navbar-height: 48px;
+
+    /* Radii */
+    --radius-window: 8px;
+    --radius-control: 4px;
+
+    /* Shadows */
+    --shadow-window: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --shadow-window-focused: 0 24px 60px rgba(0, 0, 0, 0.65);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+
+    /* Fonts */
+    --font-display: 'Boxing', sans-serif;
+    --font-accent: 'Britney', serif;
+    --font-body: 'Teko', sans-serif;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  transition: 0.5s ease;
-  scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 
-@font-face {
-  font-family: heading;
-  src: url(../src/fonts/SixCaps-Regular.ttf);
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-@font-face {
-  font-family: project;
-  src: url(../src/fonts/Teko-Light.ttf);
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-@font-face {
-  font-family: sp-character;
-  src: url(../src/fonts/Britney-Regular.otf);
+#root {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
 }
 
-::selection {
-  color: #29292B;
-  background: #C9C7BA;
+.window-content::-webkit-scrollbar {
+    width: 6px;
 }
 
-.sp{
-  font-family: sp-character;
+.window-content::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-h1 {
-  font-size: 190px;
-  font-family: heading;
-  letter-spacing: 4px;
-  word-spacing: 10px;
+.window-content::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
 }
 
-h3 {
-  font-size: 40px;
-  line-height: 65px;
+.font-display {
+    font-family: var(--font-display);
 }
 
-h2 {
-  font-size: 120px;
-  font-family: heading;
-  letter-spacing: 4px;
-  word-spacing: 10px;
+.font-accent {
+    font-family: var(--font-accent);
 }
 
-li {
-  font-size: 17px;
-}
-
-.project-title {
-  letter-spacing: 1px;
-  font-family: project;
-}
-
-.loader {
-  display: inline-flex;
-  gap: 10px;
-}
-
-.loader:before,
-.loader:after {
-  content: "";
-  height: 20px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    linear-gradient(#222 0 0) top/100% 40% no-repeat,
-    radial-gradient(farthest-side, #000 95%, #0000) 50%/8px 8px no-repeat #fff;
-  animation: l7 1.5s infinite alternate ease-in;
-  box-shadow: 0px 0px 10px #000;
-}
-
-@keyframes l7 {
-
-  0%,
-  70% {
-    background-size: 100% 40%, 8px 8px
-  }
-
-  85% {
-    background-size: 100% 120%, 8px 8px
-  }
-
-  100% {
-    background-size: 100% 40%, 8px 8px
-  }
-}
-
-.loader-sleepy {
-  display: inline-flex;
-  gap: 10px;
-}
-
-.loader-sleepy:before,
-.loader-sleepy:after {
-  content: "";
-  height: 20px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    linear-gradient(#222 0 0) top/100% 0% no-repeat,
-    radial-gradient(farthest-side, #000 95%, #0000) 50%/8px 8px no-repeat #fff;
-  animation: l9 4s infinite ease-in;
-  box-shadow: 0px 0px 10px #000;
-}
-
-@keyframes l9 {
-  0% {
-    background-size: 100% 0%, 8px 8px;
-    background-position: top, 50% 50%
-  }
-
-  80% {
-    background-size: 100% 70%, 8px 8px;
-    background-position: top, 50% 70%
-  }
-
-  84%,
-  100% {
-    background-size: 100% 0%, 8px 8px;
-    background-position: top, 50% 50%
-  }
-}
-
-.loaderdoi {
-  display: inline-flex;
-  gap: 10px;
-}
-
-.loaderdoi:before,
-.loaderdoi:after {
-  content: "";
-  height: 20px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/6px 6px no-repeat #fff;
-  transform: scaleX(var(--s, 1)) rotate(0deg);
-  animation: l6 1s infinite linear;
-  box-shadow: 0px 0px 10px #000;
-}
-
-.loaderdoi:after {
-  --s: -1;
-  animation-delay: -0.1s;
-}
-
-@keyframes l6 {
-  100% {
-    transform: scaleX(var(--s, 1)) rotate(360deg);
-  }
-}
-
-.loaderdoido {
-  display: inline-flex;
-  gap: 10px;
-}
-
-.loaderdoido:before,
-.loaderdoido:after {
-  content: "";
-  height: 20px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/6px 6px no-repeat #fff;
-  animation: l5 3s infinite;
-  box-shadow: 0px 0px 10px #000;
-}
-
-@keyframes l5 {
-
-  0%,
-  11% {
-    background-position: 35% 35%
-  }
-
-  14%,
-  36% {
-    background-position: 65% 35%
-  }
-
-  38%,
-  61% {
-    background-position: 65% 65%
-  }
-
-  64%,
-  86% {
-    background-position: 35% 65%
-  }
-
-  88%,
-  100% {
-    background-position: 35% 35%
-  }
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #29292B;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #C9C7BA;
-  border-radius: 10px 10px 10px 10px;
+.font-body {
+    font-family: var(--font-body);
 }
