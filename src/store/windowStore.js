@@ -24,7 +24,7 @@ export const useWindowStore = create((set, get) => ({
     initializeApp: () => {
         const hasVisited = localStorage.getItem('hasVisitedBefore');
         if (!hasVisited) {
-            get().openWindow(WINDOW_IDS.HELP);
+            get().openWindow(WINDOW_IDS.ABOUT);
             localStorage.setItem('hasVisitedBefore', 'true');
         }
     },
