@@ -36,8 +36,9 @@ const Desktop = () => {
 
     return (
         <div
-            className="absolute inset-0 bg-[var(--color-bg)]"
+            className="absolute left-0 right-0 bottom-0 bg-[var(--color-bg)]"
             style={{
+                top: 'var(--navbar-height)',
                 backgroundImage: `url(/src/assets/wallpapers/${selectedWallpaper}.png)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
