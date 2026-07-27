@@ -1,13 +1,26 @@
 import { useWindowStore } from '../../store/windowStore';
 
 function WindowControls({ id }) {
+    const win = useWindowStore((s) => s.windows[id]);
     const minimizeWindow = useWindowStore((s) => s.minimizeWindow);
+    const restoreWindow = useWindowStore((s) => s.restoreWindow);
     const toggleMaximize = useWindowStore((s) => s.toggleMaximize);
     const closeWindow = useWindowStore((s) => s.closeWindow);
+
+    const isMinimized = win.state === 'minimized';
 
     const handleClick = (e, action) => {
         e.stopPropagation();
         action(id);
+    };
+
+    const handleMinimizeToggle = (e) => {
+        e.stopPropagation();
+        if (isMinimized) {
+            restoreWindow(id);
+        } else {
+            minimizeWindow(id);
+        }
     };
 
     const buttonBase =
@@ -16,15 +29,15 @@ function WindowControls({ id }) {
     return (
         <div className="flex items-center gap-1">
             <button
-                onClick={(e) => handleClick(e, minimizeWindow)}
-                className={`${buttonBase} bg-[var(--color-accent)]`}
-                aria-label="Minimize"
+                onClick={handleMinimizeToggle}
+                className={`${buttonBase} bg-[var(--color-bg)]`}
+                aria-label={isMinimized ? 'Expand' : 'Minimize'}
             >
                 &minus;
             </button>
             <button
                 onClick={(e) => handleClick(e, toggleMaximize)}
-                className={`${buttonBase} bg-[var(--color-surface-elevated)]`}
+                className={`${buttonBase} bg-[var(--color-bg)]`}
                 aria-label="Maximize"
             >
                 <span className="w-2.5 h-2.5 border border-current" />
