@@ -69,6 +69,7 @@ const Window = ({ id, children }) => {
             minHeight={isMinimized ? TITLEBAR_HEIGHT : 200}
             bounds="parent"
             dragHandleClassName="window-titlebar"
+            cancel=".window-controls"
             disableDragging={isMobile || isMaximized}
             enableResizing={!isMobile && !isMaximized && !isMinimized}
             style={{ zIndex: win.zIndex }}

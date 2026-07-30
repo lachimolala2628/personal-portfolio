@@ -1,6 +1,6 @@
 import { useWindowStore } from '../../store/windowStore';
 
-const WindowControls = ({ id, isMobile }) =>  {
+const WindowControls = ({ id, isMobile }) => {
     const win = useWindowStore((s) => s.windows[id]);
     const minimizeWindow = useWindowStore((s) => s.minimizeWindow);
     const restoreWindow = useWindowStore((s) => s.restoreWindow);
@@ -27,7 +27,7 @@ const WindowControls = ({ id, isMobile }) =>  {
         'w-7 h-7 flex items-center justify-center border border-[var(--color-border)] transition hover:brightness-110 text-[var(--color-text-primary)] text-sm';
 
     return (
-        <div className="flex items-center gap-1">
+        <div className="window-controls flex items-center gap-1">
             {!isMobile && (
                 <button
                     onClick={handleMinimizeToggle}
