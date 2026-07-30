@@ -10,33 +10,39 @@ export const WINDOW_IDS = {
 export const windowConfig = {
     [WINDOW_IDS.ABOUT]: {
         title: 'About',
-        defaultSize: { width: 500, height: 450 },
-        defaultPosition: { x: 100, y: 80 },
+        path:'/about',
+        defaultSize: { width: 500, height: 590 },
+        defaultPosition: { x: 550, y: 10 },
     },
     [WINDOW_IDS.WORK]: {
         title: 'Work',
-        defaultSize: { width: 650, height: 500 },
-        defaultPosition: { x: 180, y: 100 },
+        path:'/work',
+        defaultSize: { width: 1000, height: 590 },
+        defaultPosition: { x: 180, y: 10 },
     },
     [WINDOW_IDS.EXPERIENCE]: {
         title: 'Experience',
-        defaultSize: { width: 550, height: 450 },
-        defaultPosition: { x: 260, y: 120 },
+        path:'/experience',
+        defaultSize: { width: 920, height: 590 },
+        defaultPosition: { x: 260, y: 10 },
     },
     [WINDOW_IDS.CONTACT]: {
         title: 'Contact',
-        defaultSize: { width: 450, height: 400 },
-        defaultPosition: { x: 340, y: 140 },
+        path:'/contact',
+        defaultSize: { width: 500, height: 590 },
+        defaultPosition: { x: 350, y: 10 },
     },
     [WINDOW_IDS.SETTINGS]: {
         title: 'Settings',
-        defaultSize: { width: 400, height: 350 },
-        defaultPosition: { x: 420, y: 160 },
+        path:'/settings',
+        defaultSize: { width: 950, height: 590 },
+        defaultPosition: { x: 420, y: 10 },
     },
     [WINDOW_IDS.HELP]: {
         title: 'Help',
-        defaultSize: { width: 420, height: 380 },
-        defaultPosition: { x: 500, y: 180 },
+        path:'/help',
+        defaultSize: { width: 920, height: 590 },
+        defaultPosition: { x: 290, y: 10 },
     },
 };
 

@@ -55,9 +55,14 @@ function Navbar() {
                 {isDialogOpen && (
                     <div className="absolute top-12 right-0 w-64 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-[var(--shadow-window)] p-4 flex flex-col gap-4">
                         <div>
-                            <label className="text-xs text-[var(--color-text-secondary)] block mb-1">
-                                Brightness
-                            </label>
+                            <div className="flex items-center justify-between mb-1">
+                                <label className="text-xs text-[var(--color-text-secondary)]">
+                                    Brightness
+                                </label>
+                                <span className="text-xs text-[var(--color-text-primary)]">
+                                    {brightness}%
+                                </span>
+                            </div>
                             <input
                                 type="range"
                                 min="30"
