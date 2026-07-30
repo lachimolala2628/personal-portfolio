@@ -29,14 +29,29 @@ export const useWindowStore = create((set, get) => ({
         }
     },
 
-    openWindow: (id) =>
+    openWindow: (id, isMobile = false) =>
         set((s) => {
             const newZ = s.highestZIndex + 1;
+            let updatedWindows = { ...s.windows };
+
+            if (isMobile) {
+                // Close every other open window first
+                Object.keys(updatedWindows).forEach((windowId) => {
+                    if (windowId !== id && updatedWindows[windowId].isOpen) {
+                        updatedWindows[windowId] = { ...updatedWindows[windowId], isOpen: false };
+                    }
+                });
+            }
+
+            updatedWindows[id] = {
+                ...updatedWindows[id],
+                isOpen: true,
+                state: 'normal',
+                zIndex: newZ,
+            };
+
             return {
-                windows: {
-                    ...s.windows,
-                    [id]: { ...s.windows[id], isOpen: true, state: 'normal', zIndex: newZ },
-                },
+                windows: updatedWindows,
                 focusedWindow: id,
                 highestZIndex: newZ,
             };

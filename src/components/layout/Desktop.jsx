@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useWindowStore } from '../../store/windowStore';
 import { useSettingsStore } from '../../store/settingsStore';
+import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS } from '../../constants/windowConfig';
 import Window from '../window/Window';
 import About from '../../pages/About';
@@ -19,7 +20,6 @@ const pageComponents = {
     [WINDOW_IDS.HELP]: Help,
 };
 
-// Only these two show as desktop icons
 const desktopIcons = [
     { id: WINDOW_IDS.ABOUT, label: 'About' },
     { id: WINDOW_IDS.WORK, label: 'Work' },
@@ -29,10 +29,15 @@ const Desktop = () => {
     const initializeApp = useWindowStore((s) => s.initializeApp);
     const openWindow = useWindowStore((s) => s.openWindow);
     const selectedWallpaper = useSettingsStore((s) => s.selectedWallpaper);
+    const { isMobile } = useIsMobile();
 
     useEffect(() => {
         initializeApp();
     }, [initializeApp]);
+
+    const iconContainerClass = isMobile
+        ? 'absolute top-4 left-4 right-4 flex flex-row gap-1 h-16'
+        : 'absolute top-4 left-4 flex flex-col gap-6';
 
     return (
         <div
@@ -44,16 +49,14 @@ const Desktop = () => {
                 backgroundPosition: 'center',
             }}
         >
-            {/* Desktop icons */}
-            <div className="absolute top-4 left-4 flex flex-col gap-6">
+            <div className={iconContainerClass}>
                 {desktopIcons.map((icon) => (
                     <button
                         key={icon.id}
-                        onClick={() => openWindow(icon.id)}
+                        onClick={() => openWindow(icon.id, isMobile)}
                         className="flex flex-col items-center gap-1 w-20 group"
                     >
                         <div className="w-12 h-12 bg-[var(--color-accent)] border border-[var(--color-border)] rounded flex items-center justify-center group-hover:brightness-110 transition">
-                            {/* placeholder icon, replace with real icon later */}
                             <span className="text-lg">{icon.label[0]}</span>
                         </div>
                         <span className="text-xs text-white drop-shadow">{icon.label}</span>
@@ -61,7 +64,6 @@ const Desktop = () => {
                 ))}
             </div>
 
-            {/* Windows layer */}
             {Object.values(WINDOW_IDS).map((id) => {
                 const PageContent = pageComponents[id];
                 return (

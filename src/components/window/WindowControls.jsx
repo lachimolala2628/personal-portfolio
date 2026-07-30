@@ -1,6 +1,6 @@
 import { useWindowStore } from '../../store/windowStore';
 
-function WindowControls({ id }) {
+const WindowControls = ({ id, isMobile }) =>  {
     const win = useWindowStore((s) => s.windows[id]);
     const minimizeWindow = useWindowStore((s) => s.minimizeWindow);
     const restoreWindow = useWindowStore((s) => s.restoreWindow);
@@ -28,13 +28,15 @@ function WindowControls({ id }) {
 
     return (
         <div className="flex items-center gap-1">
-            <button
-                onClick={handleMinimizeToggle}
-                className={`${buttonBase} bg-[var(--color-bg)]`}
-                aria-label={isMinimized ? 'Expand' : 'Minimize'}
-            >
-                &minus;
-            </button>
+            {!isMobile && (
+                <button
+                    onClick={handleMinimizeToggle}
+                    className={`${buttonBase} bg-[var(--color-bg)]`}
+                    aria-label={isMinimized ? 'Expand' : 'Minimize'}
+                >
+                    &minus;
+                </button>
+            )}
             <button
                 onClick={(e) => handleClick(e, toggleMaximize)}
                 className={`${buttonBase} bg-[var(--color-bg)]`}

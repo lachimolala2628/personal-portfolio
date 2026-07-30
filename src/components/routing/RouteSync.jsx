@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useWindowStore } from '../../store/windowStore';
+import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS, windowConfig } from '../../constants/windowConfig';
 
 const pathToId = {};
@@ -11,6 +12,7 @@ Object.values(WINDOW_IDS).forEach((id) => {
 const RouteSync = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { isMobile } = useIsMobile();
 
     const windows = useWindowStore((s) => s.windows);
     const focusedWindow = useWindowStore((s) => s.focusedWindow);
@@ -22,7 +24,7 @@ const RouteSync = () => {
         const id = pathToId[location.pathname];
         if (id && !windows[id].isOpen) {
             skipNextUrlUpdate.current = true;
-            openWindow(id);
+            openWindow(id, isMobile);
         }
     }, [location.pathname]);
 
@@ -39,7 +41,7 @@ const RouteSync = () => {
         }
     }, [focusedWindow]);
 
-    return null; 
+    return null;
 }
 
 export default RouteSync;

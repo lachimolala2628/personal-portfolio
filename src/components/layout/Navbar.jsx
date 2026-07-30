@@ -3,7 +3,7 @@ import { useSettingsStore } from '../../store/settingsStore';
 import { useWindowStore } from '../../store/windowStore';
 import { WINDOW_IDS } from '../../constants/windowConfig';
 
-function Navbar() {
+const Navbar = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [time, setTime] = useState(new Date());
 
@@ -53,7 +53,7 @@ function Navbar() {
                 </span>
 
                 {isDialogOpen && (
-                    <div className="absolute top-12 right-0 w-64 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-[var(--shadow-window)] p-4 flex flex-col gap-4">
+                    <div className="absolute top-12 right-0 w-64 max-w-[85vw] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-[var(--shadow-window)] p-4 flex flex-col gap-4">
                         <div>
                             <div className="flex items-center justify-between mb-1">
                                 <label className="text-xs text-[var(--color-text-secondary)]">
