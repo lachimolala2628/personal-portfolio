@@ -7,8 +7,8 @@ import WindowControls from './WindowControls';
 const TITLEBAR_HEIGHT = 40;
 const MOBILE_MARGIN = 8;
 const NAVBAR_HEIGHT = 48;
-const MOBILE_ICON_ROW_TOP = 16;
-const MOBILE_ICON_ROW_HEIGHT = 64;
+const MOBILE_ICON_ROW_TOP = 8;
+const MOBILE_ICON_ROW_HEIGHT = 56;
 const MOBILE_ICON_ROW_OFFSET = NAVBAR_HEIGHT + MOBILE_ICON_ROW_TOP + MOBILE_ICON_ROW_HEIGHT + MOBILE_ICON_ROW_TOP;
 
 const Window = ({ id, children }) => {

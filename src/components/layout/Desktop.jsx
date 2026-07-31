@@ -36,7 +36,7 @@ const Desktop = () => {
     }, [initializeApp]);
 
     const iconContainerClass = isMobile
-        ? 'absolute top-4 left-4 right-4 flex flex-row gap-1 h-16'
+        ? 'absolute top-4 left-4 right-4 flex flex-row gap-1 h-14'
         : 'absolute top-4 left-4 flex flex-col gap-6';
 
     return (
@@ -44,7 +44,7 @@ const Desktop = () => {
             className="absolute left-0 right-0 bottom-0 bg-[var(--color-bg)]"
             style={{
                 top: 'var(--navbar-height)',
-                backgroundImage: `url(/src/assets/wallpapers/${selectedWallpaper}.png)`,
+                backgroundImage: `url(/src/assets/wallpapers/${selectedWallpaper}.webp)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
@@ -56,7 +56,7 @@ const Desktop = () => {
                         onClick={() => openWindow(icon.id, isMobile)}
                         className="flex flex-col items-center gap-1 w-20 group"
                     >
-                        <div className="w-12 h-12 bg-[var(--color-accent)] border border-[var(--color-border)] rounded flex items-center justify-center group-hover:brightness-110 transition">
+                        <div className="w-10 h-10 bg-[var(--color-accent)] border border-[var(--color-border)] rounded flex items-center justify-center group-hover:brightness-110 transition">
                             <span className="text-lg">{icon.label[0]}</span>
                         </div>
                         <span className="text-xs text-white drop-shadow">{icon.label}</span>

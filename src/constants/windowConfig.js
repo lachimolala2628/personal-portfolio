@@ -45,9 +45,3 @@ export const windowConfig = {
         defaultPosition: { x: 290, y: 10 },
     },
 };
-
-export const wallpapers = [
-    { id: 'wallpaper-1', name: 'Orange Dog', path: '/src/assets/wallpapers/wallpaper-1.png' },
-    { id: 'wallpaper-2', name: 'Wallpaper Two', path: '/src/assets/wallpapers/wallpaper-2.png' },
-    { id: 'wallpaper-3', name: 'Wallpaper Three', path: '/src/assets/wallpapers/wallpaper-3.png' },
-];
