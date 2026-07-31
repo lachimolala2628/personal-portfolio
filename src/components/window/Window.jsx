@@ -10,6 +10,7 @@ const NAVBAR_HEIGHT = 48;
 const MOBILE_ICON_ROW_TOP = 8;
 const MOBILE_ICON_ROW_HEIGHT = 56;
 const MOBILE_ICON_ROW_OFFSET = NAVBAR_HEIGHT + MOBILE_ICON_ROW_TOP + MOBILE_ICON_ROW_HEIGHT + MOBILE_ICON_ROW_TOP;
+const SCREEN_MARGIN = 20;
 
 const Window = ({ id, children }) => {
     const win = useWindowStore((s) => s.windows[id]);
@@ -18,7 +19,7 @@ const Window = ({ id, children }) => {
     const restoreWindow = useWindowStore((s) => s.restoreWindow);
     const updatePosition = useWindowStore((s) => s.updatePosition);
     const updateSize = useWindowStore((s) => s.updateSize);
-    const { isMobile, windowWidth } = useIsMobile();
+    const { isMobile, windowWidth, windowHeight } = useIsMobile();
 
     if (!win || !win.isOpen) return null;
 
@@ -32,12 +33,12 @@ const Window = ({ id, children }) => {
 
     if (isMobile) {
         if (isMaximized) {
-            currentSize = { width: windowWidth, height: window.innerHeight - NAVBAR_HEIGHT };
+            currentSize = { width: windowWidth, height: windowHeight - NAVBAR_HEIGHT };
             currentPosition = { x: 0, y: 0 };
         } else {
             currentSize = {
                 width: windowWidth - MOBILE_MARGIN * 2,
-                height: window.innerHeight - MOBILE_ICON_ROW_OFFSET - MOBILE_MARGIN,
+                height: windowHeight - MOBILE_ICON_ROW_OFFSET - MOBILE_MARGIN,
             };
             currentPosition = { x: MOBILE_MARGIN, y: MOBILE_ICON_ROW_OFFSET };
         }
@@ -45,11 +46,35 @@ const Window = ({ id, children }) => {
         currentSize = { width: '100%', height: '100%' };
         currentPosition = { x: 0, y: 0 };
     } else if (isMinimized) {
-        currentSize = { width: win.size.width, height: TITLEBAR_HEIGHT };
-        currentPosition = win.position;
+        const configuredWidth = parseInt(win.size.width) || win.size.width;
+        const maxWidth = windowWidth - SCREEN_MARGIN * 2;
+        const clampedWidth = Math.min(configuredWidth, maxWidth);
+
+        const maxX = windowWidth - clampedWidth - SCREEN_MARGIN;
+        const clampedX = Math.max(SCREEN_MARGIN, Math.min(win.position.x, maxX));
+        const clampedY = Math.max(NAVBAR_HEIGHT + SCREEN_MARGIN, Math.min(win.position.y, windowHeight - TITLEBAR_HEIGHT - SCREEN_MARGIN));
+
+        currentSize = { width: clampedWidth, height: TITLEBAR_HEIGHT };
+        currentPosition = { x: clampedX, y: clampedY };
     } else {
-        currentSize = win.size;
-        currentPosition = win.position;
+        // Desktop/tablet normal state — clamp against actual screen size
+        const configuredWidth = parseInt(win.size.width) || win.size.width;
+        const configuredHeight = parseInt(win.size.height) || win.size.height;
+
+        const maxWidth = windowWidth - SCREEN_MARGIN * 2;
+        const maxHeight = windowHeight - NAVBAR_HEIGHT - SCREEN_MARGIN * 2;
+
+        const clampedWidth = Math.min(configuredWidth, maxWidth);
+        const clampedHeight = Math.min(configuredHeight, maxHeight);
+
+        const maxX = windowWidth - clampedWidth - SCREEN_MARGIN;
+        const maxY = windowHeight - clampedHeight - SCREEN_MARGIN;
+
+        const clampedX = Math.max(SCREEN_MARGIN, Math.min(win.position.x, maxX));
+        const clampedY = Math.max(NAVBAR_HEIGHT + SCREEN_MARGIN, Math.min(win.position.y, maxY));
+
+        currentSize = { width: clampedWidth, height: clampedHeight };
+        currentPosition = { x: clampedX, y: clampedY };
     }
 
     return (
