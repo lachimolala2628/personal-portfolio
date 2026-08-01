@@ -38,6 +38,8 @@ const RouteSync = () => {
             if (location.pathname !== path) {
                 navigate(path);
             }
+        } else if (location.pathname !== '/') {
+            navigate('/');
         }
     }, [focusedWindow]);
 
