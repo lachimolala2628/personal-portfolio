@@ -57,21 +57,23 @@ const Window = ({ id, children }) => {
         currentSize = { width: clampedWidth, height: TITLEBAR_HEIGHT };
         currentPosition = { x: clampedX, y: clampedY };
     } else {
-        // Desktop/tablet normal state — clamp against actual screen size
+        // Desktop/tablet normal state — clamp against actual usable screen size
         const configuredWidth = parseInt(win.size.width) || win.size.width;
         const configuredHeight = parseInt(win.size.height) || win.size.height;
 
+        const usableHeight = windowHeight - NAVBAR_HEIGHT;
+
         const maxWidth = windowWidth - SCREEN_MARGIN * 2;
-        const maxHeight = windowHeight - NAVBAR_HEIGHT - SCREEN_MARGIN * 2;
+        const maxHeight = usableHeight - SCREEN_MARGIN * 2;
 
         const clampedWidth = Math.min(configuredWidth, maxWidth);
         const clampedHeight = Math.min(configuredHeight, maxHeight);
 
         const maxX = windowWidth - clampedWidth - SCREEN_MARGIN;
-        const maxY = windowHeight - clampedHeight - SCREEN_MARGIN;
+        const maxY = usableHeight - clampedHeight - SCREEN_MARGIN;
 
         const clampedX = Math.max(SCREEN_MARGIN, Math.min(win.position.x, maxX));
-        const clampedY = Math.max(NAVBAR_HEIGHT + SCREEN_MARGIN, Math.min(win.position.y, maxY));
+        const clampedY = Math.max(0, Math.min(win.position.y, maxY));
 
         currentSize = { width: clampedWidth, height: clampedHeight };
         currentPosition = { x: clampedX, y: clampedY };
