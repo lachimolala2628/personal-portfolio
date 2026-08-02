@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Rnd } from 'react-rnd';
 import { useWindowStore } from '../../store/windowStore';
 import { windowConfig } from '../../constants/windowConfig';
@@ -11,6 +12,8 @@ const MOBILE_ICON_ROW_TOP = 8;
 const MOBILE_ICON_ROW_HEIGHT = 56;
 const MOBILE_ICON_ROW_OFFSET = NAVBAR_HEIGHT + MOBILE_ICON_ROW_TOP + MOBILE_ICON_ROW_HEIGHT + MOBILE_ICON_ROW_TOP;
 const SCREEN_MARGIN = 20;
+const TASKBAR_HEIGHT_MOBILE = 64;
+const SCROLL_THRESHOLD = 15;
 
 const Window = ({ id, children }) => {
     const win = useWindowStore((s) => s.windows[id]);
@@ -19,7 +22,10 @@ const Window = ({ id, children }) => {
     const restoreWindow = useWindowStore((s) => s.restoreWindow);
     const updatePosition = useWindowStore((s) => s.updatePosition);
     const updateSize = useWindowStore((s) => s.updateSize);
-    const { isMobile, windowWidth, windowHeight } = useIsMobile();
+    const setTaskbarVisible = useWindowStore((s) => s.setTaskbarVisible);
+    const { isMobile, isTouchDevice, windowWidth, windowHeight } = useIsMobile();
+
+    const lastScrollTop = useRef(0);
 
     if (!win || !win.isOpen) return null;
 
@@ -27,6 +33,23 @@ const Window = ({ id, children }) => {
     const isMinimized = win.state === 'minimized';
     const isActive = focusedWindow === id;
     const title = windowConfig[id].title;
+
+    const handleScroll = (e) => {
+        if (!isTouchDevice) return;
+
+        const currentScrollTop = e.target.scrollTop;
+        const delta = currentScrollTop - lastScrollTop.current;
+
+        if (Math.abs(delta) < SCROLL_THRESHOLD) return;
+
+        if (delta > 0) {
+            setTaskbarVisible(false);
+        } else {
+            setTaskbarVisible(true);
+        }
+
+        lastScrollTop.current = currentScrollTop;
+    };
 
     let currentSize;
     let currentPosition;
@@ -116,7 +139,11 @@ const Window = ({ id, children }) => {
                 </div>
 
                 {!isMinimized && (
-                    <div className="window-content flex-1 overflow-auto p-4 text-[var(--color-text-primary)]">
+                    <div
+                        className="window-content flex-1 overflow-auto p-4 text-[var(--color-text-primary)]"
+                        style={isTouchDevice ? { paddingBottom: TASKBAR_HEIGHT_MOBILE } : undefined}
+                        onScroll={handleScroll}
+                    >
                         {children}
                     </div>
                 )}

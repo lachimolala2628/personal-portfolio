@@ -10,7 +10,8 @@ const Taskbar = () => {
     const openWindow = useWindowStore((s) => s.openWindow);
     const focusWindow = useWindowStore((s) => s.focusWindow);
     const restoreWindow = useWindowStore((s) => s.restoreWindow);
-    const { isMobile } = useIsMobile();
+    const isTaskbarVisible = useWindowStore((s) => s.isTaskbarVisible);
+    const { isMobile, isTouchDevice } = useIsMobile();
 
     const isAnyWindowMaximized = Object.values(windows).some(
         (win) => win.isOpen && win.state === 'maximized'
@@ -33,8 +34,13 @@ const Taskbar = () => {
         }
     };
 
+    const shouldHide = isTouchDevice && !isTaskbarVisible;
+
     return (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-md px-3 py-2 shadow-[var(--shadow-window)] z-[9999]">
+        <div
+            className={`fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-md px-3 py-2 shadow-[var(--shadow-window)] z-[9999] transition-all duration-300 ${shouldHide ? 'translate-y-24 opacity-0' : 'translate-y-0 opacity-100'
+                }`}
+        >
             {visibleItems.map((id) => {
                 const win = windows[id];
                 const isActive = focusedWindow === id && win.isOpen && win.state !== 'minimized';

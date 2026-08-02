@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 
 const MOBILE_BREAKPOINT = 768;
+const TABLET_BREAKPOINT = 1024;
 
-export const useIsMobile = () => {
+export function useIsMobile() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
@@ -17,6 +18,7 @@ export const useIsMobile = () => {
 
     return {
         isMobile: windowWidth < MOBILE_BREAKPOINT,
+        isTouchDevice: windowWidth < TABLET_BREAKPOINT,
         windowWidth,
         windowHeight,
     };

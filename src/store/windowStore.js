@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { WINDOW_IDS, windowConfig } from '../constants/windowConfig';
 
+
+
 const buildInitialWindows = () => {
     const windows = {};
     Object.values(WINDOW_IDS).forEach((id) => {
@@ -19,6 +21,8 @@ export const useWindowStore = create((set, get) => ({
     windows: buildInitialWindows(),
     focusedWindow: null,
     highestZIndex: 1,
+    isTaskbarVisible: true,
+    setTaskbarVisible: (visible) => set({ isTaskbarVisible: visible }),
 
     // Call this once when the app first loads
     initializeApp: () => {
