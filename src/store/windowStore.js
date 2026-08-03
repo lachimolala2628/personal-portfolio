@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { WINDOW_IDS, windowConfig } from '../constants/windowConfig';
-
-
+import { useZIndexStore } from './zIndexStore';
 
 const buildInitialWindows = () => {
     const windows = {};
@@ -20,11 +19,10 @@ const buildInitialWindows = () => {
 export const useWindowStore = create((set, get) => ({
     windows: buildInitialWindows(),
     focusedWindow: null,
-    highestZIndex: 1,
     isTaskbarVisible: true,
+
     setTaskbarVisible: (visible) => set({ isTaskbarVisible: visible }),
 
-    // Call this once when the app first loads
     initializeApp: () => {
         const hasVisited = localStorage.getItem('hasVisitedBefore');
         if (!hasVisited) {
@@ -35,11 +33,10 @@ export const useWindowStore = create((set, get) => ({
 
     openWindow: (id, isMobile = false) =>
         set((s) => {
-            const newZ = s.highestZIndex + 1;
+            const newZ = useZIndexStore.getState().getNextZIndex('window', id);
             let updatedWindows = { ...s.windows };
 
             if (isMobile) {
-                // Close every other open window first
                 Object.keys(updatedWindows).forEach((windowId) => {
                     if (windowId !== id && updatedWindows[windowId].isOpen) {
                         updatedWindows[windowId] = { ...updatedWindows[windowId], isOpen: false };
@@ -57,7 +54,6 @@ export const useWindowStore = create((set, get) => ({
             return {
                 windows: updatedWindows,
                 focusedWindow: id,
-                highestZIndex: newZ,
             };
         }),
 
@@ -69,11 +65,10 @@ export const useWindowStore = create((set, get) => ({
 
     focusWindow: (id) =>
         set((s) => {
-            const newZ = s.highestZIndex + 1;
+            const newZ = useZIndexStore.getState().getNextZIndex('window', id);
             return {
                 windows: { ...s.windows, [id]: { ...s.windows[id], zIndex: newZ } },
                 focusedWindow: id,
-                highestZIndex: newZ,
             };
         }),
 
@@ -95,11 +90,10 @@ export const useWindowStore = create((set, get) => ({
 
     restoreWindow: (id) =>
         set((s) => {
-            const newZ = s.highestZIndex + 1;
+            const newZ = useZIndexStore.getState().getNextZIndex('window', id);
             return {
                 windows: { ...s.windows, [id]: { ...s.windows[id], state: 'normal', zIndex: newZ } },
                 focusedWindow: id,
-                highestZIndex: newZ,
             };
         }),
 

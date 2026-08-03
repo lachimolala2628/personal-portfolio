@@ -3,13 +3,15 @@ import { useWindowStore } from '../../store/windowStore';
 import { useSettingsStore } from '../../store/settingsStore';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS } from '../../constants/windowConfig';
+import { useProjectWindowStore } from '../../store/projectWindowStore';;
 import Window from '../window/Window';
 import About from '../../pages/About';
 import Work from '../../pages/Work';
 import Experience from '../../pages/Experience';
 import Contact from '../../pages/Contact';
-import Settings from '../../pages/Settings';
+import Settings from '../../pages/Settings'
 import Help from '../../pages/Help';
+import ProjectWindow from '../window/ProjectWindow';
 
 const pageComponents = {
     [WINDOW_IDS.ABOUT]: About,
@@ -29,6 +31,7 @@ const Desktop = () => {
     const initializeApp = useWindowStore((s) => s.initializeApp);
     const openWindow = useWindowStore((s) => s.openWindow);
     const selectedWallpaper = useSettingsStore((s) => s.selectedWallpaper);
+    const openProjects = useProjectWindowStore((s) => s.openProjects);
     const { isMobile } = useIsMobile();
 
     useEffect(() => {
@@ -72,6 +75,10 @@ const Desktop = () => {
                     </Window>
                 );
             })}
+
+            {Object.keys(openProjects).map((slug) => (
+                <ProjectWindow key={slug} slug={slug} />
+            ))}
         </div>
     );
 }

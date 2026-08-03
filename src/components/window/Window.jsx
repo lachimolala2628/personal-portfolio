@@ -3,6 +3,7 @@ import { Rnd } from 'react-rnd';
 import { useWindowStore } from '../../store/windowStore';
 import { windowConfig } from '../../constants/windowConfig';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import { useZIndexStore } from '../../store/zIndexStore';
 import WindowControls from './WindowControls';
 
 const TITLEBAR_HEIGHT = 40;
@@ -17,12 +18,13 @@ const SCROLL_THRESHOLD = 15;
 
 const Window = ({ id, children }) => {
     const win = useWindowStore((s) => s.windows[id]);
-    const focusedWindow = useWindowStore((s) => s.focusedWindow);
     const focusWindow = useWindowStore((s) => s.focusWindow);
     const restoreWindow = useWindowStore((s) => s.restoreWindow);
     const updatePosition = useWindowStore((s) => s.updatePosition);
     const updateSize = useWindowStore((s) => s.updateSize);
     const setTaskbarVisible = useWindowStore((s) => s.setTaskbarVisible);
+    const activeType = useZIndexStore((s) => s.activeType);
+    const activeId = useZIndexStore((s) => s.activeId);
     const { isMobile, isTouchDevice, windowWidth, windowHeight } = useIsMobile();
 
     const lastScrollTop = useRef(0);
@@ -31,7 +33,7 @@ const Window = ({ id, children }) => {
 
     const isMaximized = win.state === 'maximized';
     const isMinimized = win.state === 'minimized';
-    const isActive = focusedWindow === id;
+    const isActive = activeType === 'window' && activeId === id;
     const title = windowConfig[id].title;
 
     const handleScroll = (e) => {
