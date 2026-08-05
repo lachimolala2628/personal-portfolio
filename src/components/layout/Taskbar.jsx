@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useWindowStore } from '../../store/windowStore';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS, windowConfig } from '../../constants/windowConfig';
@@ -5,6 +6,7 @@ import { WINDOW_IDS, windowConfig } from '../../constants/windowConfig';
 const taskbarItems = Object.values(WINDOW_IDS);
 
 const Taskbar = () => {
+    const [hoveredId, setHoveredId] = useState(null);
     const windows = useWindowStore((s) => s.windows);
     const focusedWindow = useWindowStore((s) => s.focusedWindow);
     const openWindow = useWindowStore((s) => s.openWindow);
@@ -49,6 +51,8 @@ const Taskbar = () => {
                     <button
                         key={id}
                         onClick={() => handleIconClick(id)}
+                        onMouseEnter={() => setHoveredId(id)}
+                        onMouseLeave={() => setHoveredId(null)}
                         className="relative w-10 h-10 flex items-center justify-center bg-[var(--color-surface-elevated)] border border-[var(--color-border)] rounded hover:brightness-110 transition"
                         aria-label={windowConfig[id].title}
                     >
@@ -62,6 +66,13 @@ const Taskbar = () => {
                                     }`}
                                 aria-hidden="true"
                             />
+                        )}
+
+                        {hoveredId === id && (
+                            <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded text-xs text-[var(--color-text-primary)] shadow-[var(--shadow-window)] pointer-events-none">
+                                {windowConfig[id].title}
+                                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[var(--color-surface)] border-r border-b border-[var(--color-border)] rotate-45" />
+                            </div>
                         )}
                     </button>
                 );
