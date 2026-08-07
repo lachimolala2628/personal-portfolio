@@ -2,31 +2,40 @@ import React from 'react'
 
 const timeline = [
     {
-        role: 'Frontend Developer',
-        org: 'Multigraphics Group',
-        type: 'Freelance',
-        isCurrent: false,
-        dates: 'Month Year - Month Year',
-        location: '',
-        description: 'Placeholder — built the Oraanj interior design platform frontend.',
-    },
-    {
-        role: 'Freelance Frontend Developer',
-        org: 'Self-employed',
-        type: 'Freelance',
-        isCurrent: true,
-        dates: 'Month Year - Present',
-        location: '',
-        description: 'Placeholder — building client and personal projects, roughly 2 years of freelance experience.',
-    },
-    {
         role: 'BCA Student',
         org: 'IGNOU',
         type: 'Distance Learning',
         isCurrent: true,
-        dates: 'Month Year - Present',
+        dates: 'June 2024 - Present',
+        location: 'New Delhi, India',
+        description: 'Bachelor of Computer Application, coursework in Data Structures, OS, Computer Networks, DBMS, Algorithms, and Web Programming.',
+    },
+    {
+        role: 'Frontend Developer',
+        org: 'Multiple Clients',
+        type: 'Freelance',
+        isCurrent: false,
+        dates: 'April 2023 - October 2025',
+        location: 'New Delhi, India',
+        description: 'Built responsive React and JavaScript web applications for independent clients, owning end-to-end delivery from design to deployment, and collaborating within small development teams across design, development, and cross-browser testing.',
+    },
+    {
+        role: 'Frontend Developer',
+        org: 'Multigraphics Group · Contract',
+        type: 'Oraanj — Interior Design',
+        isCurrent: false,
+        dates: 'April 2023 - June 2023',
+        location: 'New Delhi, India',
+        description: 'Raised accessibility score to 97/100 through semantic HTML restructuring and performance optimization. Delivered a fully responsive mobile-first redesign from Figma to production, cutting client-reported UI bugs by 40% through cross-browser testing.',
+    },
+    {
+        role: 'Web Design & Development Certification',
+        org: 'Dice Academy',
+        type: 'Certification',
+        isCurrent: false,
+        dates: 'October 2022 - April 2023',
         location: '',
-        description: 'Placeholder — self-paced Bachelor of Computer Applications degree.',
+        description: 'The starting point — this is where I first learned web development and found my way into frontend engineering.',
     },
 ];
 
@@ -40,7 +49,6 @@ const Experience = () => {
                 </p>
             </div>
 
-            {/* Current Focus box */}
             <div className="border border-[var(--color-border)] rounded-md overflow-hidden">
                 <div className="bg-[var(--color-surface-elevated)] px-4 py-2">
                     <span className="text-xs tracking-wider text-[var(--color-text-secondary)] font-medium">
@@ -50,16 +58,15 @@ const Experience = () => {
                 <ul className="p-4 flex flex-col gap-2">
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Placeholder current focus item one.</span>
+                        <span>Completing a self-paced BCA through IGNOU.</span>
                     </li>
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Placeholder current focus item two.</span>
+                        <span>Building personal projects and exploring new tools in the React and Next.js ecosystem.</span>
                     </li>
                 </ul>
             </div>
 
-            {/* Career Timeline */}
             <div className="border border-[var(--color-border)] rounded-md overflow-hidden">
                 <div className="bg-[var(--color-surface-elevated)] px-4 py-2">
                     <span className="text-xs tracking-wider text-[var(--color-text-secondary)] font-medium">
