@@ -8,19 +8,22 @@ const About = () => {
         <div className="flex flex-col gap-6">
             {/* Name heading with decorative line */}
             <h1 className="text-4xl sm:text-5xl font-display text-[var(--color-text-primary)] flex items-center gap-4 flex-wrap">
-                <span>Try</span>
+                <span>Ayush</span>
                 <span className="flex-1 h-px bg-[var(--color-border)] min-w-8" />
-                <span>Catch</span>
+                <span>Kumar</span>
             </h1>
 
             {/* Bio paragraphs */}
             <div className="flex flex-col gap-3 text-[var(--color-text-secondary)]">
                 <p>
-                    Bio paragraph one — who you are, what you do, based in [location]. Placeholder text
-                    describing your role and specialty.
+                    Based in New Delhi, I'm a frontend developer and UI/UX designer with around 2 years of
+                    freelance experience. I specialize in building clean, functional interfaces using
+                    React, Next.js, and Tailwind CSS — turning ideas into products that actually feel good
+                    to use.
                 </p>
                 <p>
-                    Bio paragraph two — personal touch, interests outside of code. Links like{' '}
+                    Outside of code, I'm usually behind a camera, painting, or lost in a book — and I'm
+                    always poking around new technologies just to see how they work. You can find me on{' '}
                     <a href="#" className="text-[var(--color-accent)] underline">
                         LinkedIn
                     </a>{' '}
@@ -42,15 +45,11 @@ const About = () => {
                 <ul className="p-4 flex flex-col gap-2">
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Placeholder focus item one.</span>
+                        <span>Completing a self-paced BCA through IGNOU.</span>
                     </li>
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Placeholder focus item two.</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
-                        <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Placeholder focus item three.</span>
+                        <span>Building personal projects and exploring new tools in the React and Next.js ecosystem.</span>
                     </li>
                 </ul>
             </div>
@@ -72,7 +71,7 @@ const About = () => {
             </div>
 
             {/* Decorative illustration placeholder */}
-            <div className="flex justify-center items-end mt-4 ">
+            <div className="hidden lg:flex justify-center items-end mt-4">
                 <div className="w-32 h-24 border-2 border-dashed border-[var(--color-border)] rounded flex items-center justify-center">
                     <span className="text-xs text-[var(--color-text-secondary)] text-center px-2">
                         Custom illustration goes here
