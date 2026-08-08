@@ -36,7 +36,9 @@ const Work = () => {
                             <span className="text-[var(--color-text-primary)]">{project.name}</span>
                             <span className="text-[var(--color-text-secondary)]">
                                 {' '}
-                                • {project.role} • {project.dates} • {project.type}
+                                • {project.role}
+                                {project.dates && ` • ${project.dates}`}
+                                {' '}• {project.type}
                             </span>
                         </button>
                     ))}

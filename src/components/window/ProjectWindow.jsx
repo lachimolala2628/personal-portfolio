@@ -69,7 +69,8 @@ const ProjectWindow = ({ slug }) => {
             <div>
                 <h2 className="text-2xl font-display text-[var(--color-text-primary)]">{project.name}</h2>
                 <p className="text-xs text-[var(--color-text-secondary)] tracking-wider mt-1">
-                    {project.role.toUpperCase()} • {project.dates.toUpperCase()}
+                    {project.role.toUpperCase()}
+                    {project.dates && ` • ${project.dates.toUpperCase()}`}
                 </p>
             </div>
 
