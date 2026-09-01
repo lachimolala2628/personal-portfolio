@@ -105,7 +105,33 @@ const ProjectWindow = ({ slug }) => {
                 </div>
             </div>
 
-            <p className="text-[var(--color-text-secondary)] text-sm">{project.description}</p>
+            {project.features && (
+                <div>
+                    <h3 className="text-xs tracking-wider text-[var(--color-text-secondary)] mb-2">FEATURES</h3>
+                    <div className="flex flex-wrap gap-2">
+                        {project.features.map((feature) => (
+                            <span key={feature} className="px-2 py-1 border border-[var(--color-border)] rounded text-xs">
+                                {feature}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {project.sections ? (
+                <div className="flex flex-col gap-4 pt-2 border-t border-[var(--color-border)]">
+                    {project.sections.map((section) => (
+                        <div key={section.heading}>
+                            <h3 className="text-sm font-display text-[var(--color-text-primary)] mb-1">
+                                {section.heading}
+                            </h3>
+                            <p className="text-sm text-[var(--color-text-secondary)]">{section.body}</p>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p className="text-[var(--color-text-secondary)] text-sm">{project.description}</p>
+            )}
         </div>
     );
 
@@ -118,7 +144,7 @@ const ProjectWindow = ({ slug }) => {
             )}
             {project.visuals.map((visual, i) => (
                 <div key={i} className="border border-[var(--color-border)] rounded overflow-hidden">
-                    <div className="h-48 bg-[var(--color-surface-elevated)] flex items-center justify-center">
+                    <div className="h-64 bg-[var(--color-surface-elevated)] flex items-center justify-center">
                         <span className="text-xs text-[var(--color-text-secondary)]">Image placeholder</span>
                     </div>
                     <div className="px-3 py-2 text-xs text-[var(--color-text-secondary)]">
@@ -194,7 +220,7 @@ const ProjectWindow = ({ slug }) => {
                         </div>
                     ) : (
                         <div className="flex h-full min-h-0 overflow-hidden">
-                            <div className="window-content w-[38%] shrink-0 min-h-0 overflow-auto p-4 border-r border-[var(--color-border)]">
+                            <div className="window-content w-[40%] shrink-0 min-h-0 overflow-auto p-4 border-r border-[var(--color-border)]">
                                 <DetailsContent />
                             </div>
                             <div className="window-content flex-1 min-h-0 overflow-auto p-4">
