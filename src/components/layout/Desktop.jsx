@@ -12,6 +12,8 @@ import Contact from '../../pages/Contact';
 import Settings from '../../pages/Settings'
 import Help from '../../pages/Help';
 import ProjectWindow from '../window/ProjectWindow';
+import FolderIcon from '../ui/FolderIcon.jsx';
+import FileIcon from '../ui/FileIcon.jsx';
 
 const pageComponents = {
     [WINDOW_IDS.ABOUT]: About,
@@ -23,8 +25,8 @@ const pageComponents = {
 };
 
 const desktopIcons = [
-    { id: WINDOW_IDS.ABOUT, label: 'About' },
-    { id: WINDOW_IDS.WORK, label: 'Work' },
+    { id: WINDOW_IDS.ABOUT, label: 'About', icon: FileIcon },
+    { id: WINDOW_IDS.WORK, label: 'Work', icon: FolderIcon },
 ];
 
 const Desktop = () => {
@@ -53,18 +55,21 @@ const Desktop = () => {
             }}
         >
             <div className={iconContainerClass}>
-                {desktopIcons.map((icon) => (
-                    <button
-                        key={icon.id}
-                        onClick={() => openWindow(icon.id, isMobile)}
-                        className="flex flex-col items-center gap-1 w-20 group"
-                    >
-                        <div className="w-10 h-10 bg-[var(--color-accent)] border border-[var(--color-border)] rounded flex items-center justify-center group-hover:brightness-110 transition">
-                            <span className="text-lg">{icon.label[0]}</span>
-                        </div>
-                        <span className="text-xs text-white drop-shadow">{icon.label}</span>
-                    </button>
-                ))}
+                {desktopIcons.map((item) => {
+                    const IconComponent = item.icon;
+                    return (
+                        <button
+                            key={item.id}
+                            onClick={() => openWindow(item.id, isMobile)}
+                            className="flex flex-col items-center gap-1 w-20 group"
+                        >
+                            <div className="group-hover:brightness-110 transition">
+                                <IconComponent />
+                            </div>
+                            <span className="text-xs text-white drop-shadow">{item.label}</span>
+                        </button>
+                    );
+                })}
             </div>
 
             {Object.values(WINDOW_IDS).map((id) => {
