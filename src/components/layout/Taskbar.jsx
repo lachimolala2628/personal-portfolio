@@ -2,8 +2,23 @@ import { useState } from 'react';
 import { useWindowStore } from '../../store/windowStore';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS, windowConfig } from '../../constants/windowConfig';
+import { PiBagSimpleThin } from "react-icons/pi";
+import { CiSquareAlert } from "react-icons/ci";
+import { PiListBulletsLight } from "react-icons/pi";
+import { IoSettingsOutline } from "react-icons/io5";
+import { CiMail } from "react-icons/ci";
+import { TfiHelpAlt } from "react-icons/tfi";
 
 const taskbarItems = Object.values(WINDOW_IDS);
+
+const iconMap = {
+    [WINDOW_IDS.ABOUT]: CiSquareAlert,
+    [WINDOW_IDS.WORK]: PiBagSimpleThin,
+    [WINDOW_IDS.EXPERIENCE]: PiListBulletsLight,
+    [WINDOW_IDS.CONTACT]: CiMail,
+    [WINDOW_IDS.SETTINGS]: IoSettingsOutline,
+    [WINDOW_IDS.HELP]: TfiHelpAlt,
+};
 
 const Taskbar = () => {
     const [hoveredId, setHoveredId] = useState(null);
@@ -56,9 +71,10 @@ const Taskbar = () => {
                         className="relative w-10 h-10 flex items-center justify-center bg-[var(--color-surface-elevated)] border border-[var(--color-border)] rounded hover:brightness-110 transition"
                         aria-label={windowConfig[id].title}
                     >
-                        <span className="text-xs text-[var(--color-text-primary)] font-display">
-                            {windowConfig[id].title[0]}
-                        </span>
+                        {(() => {
+                            const Icon = iconMap[id];
+                            return <Icon className="text-sm text-[var(--color-text-primary)]" />;
+                        })()}
 
                         {win.isOpen && (
                             <span

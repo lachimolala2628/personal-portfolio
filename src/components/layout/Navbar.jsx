@@ -3,6 +3,7 @@ import { useSettingsStore } from '../../store/settingsStore';
 import { useWindowStore } from '../../store/windowStore';
 import { WINDOW_IDS } from '../../constants/windowConfig';
 import SearchDialog from './SearchDialog';
+import { PiSunLight } from "react-icons/pi";
 
 const Navbar = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -55,7 +56,7 @@ const Navbar = () => {
                         className="w-8 h-8 flex items-center justify-center hover:opacity-70 transition"
                         aria-label="Quick settings"
                     >
-                        ☀
+                        <PiSunLight />
                     </button>
                     <span className="text-sm text-[var(--color-text-primary)] font-body">
                         {formattedTime}

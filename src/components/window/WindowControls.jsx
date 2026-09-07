@@ -1,4 +1,7 @@
 import { useWindowStore } from '../../store/windowStore';
+import { RxCross2 } from "react-icons/rx";
+import { BsDash } from "react-icons/bs";
+import { IoIosSquareOutline } from "react-icons/io";
 
 const WindowControls = ({ id, isMobile }) => {
     const win = useWindowStore((s) => s.windows[id]);
@@ -34,7 +37,7 @@ const WindowControls = ({ id, isMobile }) => {
                     className={`${buttonBase} bg-[var(--color-bg)]`}
                     aria-label={isMinimized ? 'Expand' : 'Minimize'}
                 >
-                    &minus;
+                    <BsDash />
                 </button>
             )}
             <button
@@ -42,14 +45,14 @@ const WindowControls = ({ id, isMobile }) => {
                 className={`${buttonBase} bg-[var(--color-bg)]`}
                 aria-label="Maximize"
             >
-                <span className="w-2.5 h-2.5 border border-current" />
+                <IoIosSquareOutline />
             </button>
             <button
                 onClick={(e) => handleClick(e, closeWindow)}
                 className={`${buttonBase} bg-[var(--color-bg)]`}
                 aria-label="Close"
             >
-                &times;
+                <RxCross2 />
             </button>
         </div>
     );

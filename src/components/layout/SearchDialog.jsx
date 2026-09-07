@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useWindowStore } from '../../store/windowStore';
 import { WINDOW_IDS, windowConfig } from '../../constants/windowConfig';
+import { CiSearch } from "react-icons/ci";
+import { RxCross2 } from "react-icons/rx";
 
 const SEARCH_DELAY = 1400;
 
@@ -64,7 +66,7 @@ const SearchDialog = ({ onClose }) => {
                         className="w-7 h-7 flex items-center justify-center border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:brightness-110 transition"
                         aria-label="Close"
                     >
-                        &times;
+                        <RxCross2 />
                     </button>
                 </div>
 
@@ -94,7 +96,7 @@ const SearchDialog = ({ onClose }) => {
                             className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-[var(--color-accent)] text-[var(--color-bg)] rounded hover:brightness-110 transition disabled:opacity-50"
                             aria-label="Search"
                         >
-                            &crarr;
+                            <CiSearch className="text-sm" />
                         </button>
                     </div>
 
