@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useWindowStore } from '../../store/windowStore';
+import { useProjectWindowStore } from '../../store/projectWindowStore';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS, windowConfig } from '../../constants/windowConfig';
 import { PiBagSimpleThin } from "react-icons/pi";
@@ -25,14 +26,15 @@ const Taskbar = () => {
     const windows = useWindowStore((s) => s.windows);
     const focusedWindow = useWindowStore((s) => s.focusedWindow);
     const openWindow = useWindowStore((s) => s.openWindow);
+    const openProjects = useProjectWindowStore((s) => s.openProjects);
     const focusWindow = useWindowStore((s) => s.focusWindow);
     const restoreWindow = useWindowStore((s) => s.restoreWindow);
     const isTaskbarVisible = useWindowStore((s) => s.isTaskbarVisible);
     const { isMobile, isTouchDevice } = useIsMobile();
 
-    const isAnyWindowMaximized = Object.values(windows).some(
-        (win) => win.isOpen && win.state === 'maximized'
-    );
+    const isAnyWindowMaximized =
+        Object.values(windows).some((win) => win.isOpen && win.state === 'maximized') ||
+        Object.values(openProjects).some((proj) => proj.state === 'maximized');
 
     if (isAnyWindowMaximized) return null;
 

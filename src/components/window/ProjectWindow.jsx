@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Rnd } from 'react-rnd';
 import { useProjectWindowStore } from '../../store/projectWindowStore';
 import { useZIndexStore } from '../../store/zIndexStore';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { getProjectBySlug } from '../../constants/projectsConfig';
+import { useWindowStore } from '../../store/windowStore';
+import { IoIosSquareOutline } from 'react-icons/io';
+import { BsDash } from 'react-icons/bs';
+import { RxCross2 } from 'react-icons/rx';
 
 const TITLEBAR_HEIGHT = 40;
 const NAVBAR_HEIGHT = 48;
 const SCREEN_MARGIN = 20;
+const SCROLL_THRESHOLD = 15;
 
 const ProjectWindow = ({ slug }) => {
 
@@ -21,7 +26,9 @@ const ProjectWindow = ({ slug }) => {
     const updateProjectSize = useProjectWindowStore((s) => s.updateProjectSize);
     const activeType = useZIndexStore((s) => s.activeType);
     const activeId = useZIndexStore((s) => s.activeId);
-    const { isMobile, windowWidth, windowHeight } = useIsMobile();
+    const { isMobile, isTouchDevice, windowWidth, windowHeight } = useIsMobile();
+    const setTaskbarVisible = useWindowStore((s) => s.setTaskbarVisible);
+    const lastScrollTop = useRef(0);
 
     const [mobileTab, setMobileTab] = useState('details');
 
@@ -38,8 +45,13 @@ const ProjectWindow = ({ slug }) => {
     let currentPosition;
 
     if (isMobile) {
-        currentSize = { width: windowWidth - 16, height: windowHeight - NAVBAR_HEIGHT - 16 };
-        currentPosition = { x: 8, y: NAVBAR_HEIGHT + 8 };
+        if (isMaximized) {
+            currentSize = { width: windowWidth, height: windowHeight - NAVBAR_HEIGHT };
+            currentPosition = { x: 0, y: 0 };
+        } else {
+            currentSize = { width: windowWidth - 16, height: windowHeight - NAVBAR_HEIGHT - 16 };
+            currentPosition = { x: 8, y: NAVBAR_HEIGHT + 8 };
+        }
     } else if (isMaximized) {
         currentSize = { width: '100%', height: '100%' };
         currentPosition = { x: 0, y: 0 };
@@ -62,6 +74,23 @@ const ProjectWindow = ({ slug }) => {
 
     const openVisitLink = () => {
         window.open(project.visitUrl, '_blank', 'noopener,noreferrer');
+    };
+
+    const handleScroll = (e) => {
+        if (!isTouchDevice) return;
+
+        const currentScrollTop = e.target.scrollTop;
+        const delta = currentScrollTop - lastScrollTop.current;
+
+        if (Math.abs(delta) < SCROLL_THRESHOLD) return;
+
+        if (delta > 0) {
+            setTaskbarVisible(false);
+        } else {
+            setTaskbarVisible(true);
+        }
+
+        lastScrollTop.current = currentScrollTop;
     };
 
     const DetailsContent = () => (
@@ -183,11 +212,13 @@ const ProjectWindow = ({ slug }) => {
                         {isActive && <span className="w-2 h-2 rounded-full bg-orange-500" aria-label="Active window" />}
                     </div>
                     <div className="window-controls flex items-center gap-1">
-                        <button onClick={handleMinimizeToggle} className="w-7 h-7 flex items-center justify-center border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:brightness-110 transition" aria-label={isMinimized ? 'Expand' : 'Minimize'}>&minus;</button>
-                        <button onClick={(e) => { e.stopPropagation(); toggleProjectMaximize(slug); }} className="w-7 h-7 flex items-center justify-center border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:brightness-110 transition" aria-label="Maximize">
-                            <span className="w-2.5 h-2.5 border border-current" />
+                        {!isMobile && (
+                            <button onClick={handleMinimizeToggle} className="w-7 h-7 flex items-center justify-center border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:brightness-110 transition text-sm" aria-label={isMinimized ? 'Expand' : 'Minimize'}><BsDash /></button>
+                        )}
+                        <button onClick={(e) => { e.stopPropagation(); toggleProjectMaximize(slug); }} className="w-7 h-7 flex items-center justify-center border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:brightness-110 transition text-sm" aria-label="Maximize">
+                            <IoIosSquareOutline />
                         </button>
-                        <button onClick={(e) => { e.stopPropagation(); closeProject(slug); }} className="w-7 h-7 flex items-center justify-center border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:brightness-110 transition" aria-label="Close">&times;</button>
+                        <button onClick={(e) => { e.stopPropagation(); closeProject(slug); }} className="w-7 h-7 flex items-center justify-center border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)] hover:brightness-110 transition text-sm" aria-label="Close"><RxCross2 /></button>
                     </div>
                 </div>
 
@@ -214,16 +245,16 @@ const ProjectWindow = ({ slug }) => {
                                     VISUALS
                                 </button>
                             </div>
-                            <div className="window-content flex-1 min-h-0 overflow-auto p-4">
+                            <div className="window-content flex-1 min-h-0 overflow-auto p-4" onScroll={handleScroll}>
                                 {mobileTab === 'details' ? <DetailsContent /> : <VisualsContent />}
                             </div>
                         </div>
                     ) : (
                         <div className="flex h-full min-h-0 overflow-hidden">
-                            <div className="window-content w-[40%] shrink-0 min-h-0 overflow-auto p-4 border-r border-[var(--color-border)]">
+                            <div className="window-content w-[40%] shrink-0 min-h-0 overflow-auto p-4 border-r border-[var(--color-border)]" onScroll={handleScroll}>
                                 <DetailsContent />
                             </div>
-                            <div className="window-content flex-1 min-h-0 overflow-auto p-4">
+                            <div className="window-content flex-1 min-h-0 overflow-auto p-4" onScroll={handleScroll}>
                                 <VisualsContent />
                             </div>
                         </div>
