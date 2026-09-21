@@ -1,19 +1,51 @@
+import { useRef, useState, useEffect } from 'react';
 import { useWindowStore } from '../store/windowStore';
 import { WINDOW_IDS } from '../constants/windowConfig';
 
 const About = () => {
+
     const openWindow = useWindowStore((s) => s.openWindow);
+    const headingRef = useRef(null);
+    const [fontSize, setFontSize] = useState(48);
+
+    useEffect(() => {
+        const el = headingRef.current;
+        if (!el) return;
+
+        const fitText = () => {
+            let size = 44;
+            el.style.fontSize = `${size}px`;
+
+            while (el.scrollWidth > el.clientWidth && size > 12) {
+                size -= 1;
+                el.style.fontSize = `${size}px`;
+            }
+
+            setFontSize(size);
+        };
+
+        const observer = new ResizeObserver(() => {
+            fitText();
+        });
+
+        observer.observe(el);
+        fitText();
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div className="flex flex-col gap-6">
-            {/* Name heading with decorative line */}
-            <h1 className="text-4xl sm:text-5xl font-display text-[var(--color-text-primary)] flex items-center gap-4 flex-wrap">
+            <h1
+                ref={headingRef}
+                style={{ fontSize: `${fontSize}px` }}
+                className="sticky -top-4 z-10 -mx-4 -mt-4 px-4 pt-4 pb-3 bg-[var(--color-surface)] font-display text-[var(--color-text-primary)] flex items-center gap-4 whitespace-nowrap overflow-hidden"
+            >
                 <span>Ayush</span>
-                <span className="flex-1 h-px bg-[var(--color-border)] min-w-8" />
+                <span className="w-16 h-px bg-[var(--color-border)] shrink-0" />
                 <span>Kumar</span>
             </h1>
 
-            {/* Bio paragraphs */}
             <div className="flex flex-col gap-3 text-[var(--color-text-secondary)]">
                 <p>
                     Based in New Delhi, I'm a frontend developer and UI/UX designer with around 2 years of
@@ -35,7 +67,6 @@ const About = () => {
                 </p>
             </div>
 
-            {/* Current Focus box */}
             <div className="border border-[var(--color-border)] rounded-md overflow-hidden">
                 <div className="bg-[var(--color-surface-elevated)] px-4 py-2">
                     <span className="text-xs tracking-wider text-[var(--color-text-secondary)] font-medium">
@@ -54,7 +85,6 @@ const About = () => {
                 </ul>
             </div>
 
-            {/* Full Timeline teaser */}
             <div className="flex flex-col gap-2">
                 <span className="text-xs tracking-wider text-[var(--color-text-secondary)] font-medium">
                     FULL TIMELINE
@@ -70,7 +100,6 @@ const About = () => {
                 </button>
             </div>
 
-            {/* Decorative illustration placeholder */}
             <div className="hidden lg:flex justify-center items-end mt-4">
                 <div className="w-32 h-24 border-2 border-dashed border-[var(--color-border)] rounded flex items-center justify-center">
                     <span className="text-xs text-[var(--color-text-secondary)] text-center px-2">

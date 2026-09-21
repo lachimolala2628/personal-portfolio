@@ -117,7 +117,7 @@ const Window = ({ id, children }) => {
                     updatePosition(id, pos);
                 }
             }}
-            minWidth={280}
+            minWidth={isMobile ? 240 : 420}
             minHeight={isMinimized ? TITLEBAR_HEIGHT : 200}
             bounds="parent"
             dragHandleClassName="window-titlebar"
