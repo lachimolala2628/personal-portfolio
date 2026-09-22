@@ -10,7 +10,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
 import { TfiHelpAlt } from "react-icons/tfi";
 
-const taskbarItems = Object.values(WINDOW_IDS);
+const taskbarItems = Object.values(WINDOW_IDS).filter((id) => id !== WINDOW_IDS.RESUME);
 
 const iconMap = {
     [WINDOW_IDS.ABOUT]: CiSquareAlert,

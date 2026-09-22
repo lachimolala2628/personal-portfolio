@@ -5,43 +5,50 @@ export const WINDOW_IDS = {
     CONTACT: 'contact',
     SETTINGS: 'settings',
     HELP: 'help',
+    RESUME: 'resume',
 };
 
 export const windowConfig = {
     [WINDOW_IDS.ABOUT]: {
         title: 'About',
-        path:'/about',
+        path: '/about',
         defaultSize: { width: 500, height: 590 },
         defaultPosition: { x: 550, y: 10 },
     },
     [WINDOW_IDS.WORK]: {
         title: 'Work',
-        path:'/work',
+        path: '/work',
         defaultSize: { width: 1000, height: 590 },
         defaultPosition: { x: 180, y: 10 },
     },
     [WINDOW_IDS.EXPERIENCE]: {
         title: 'Experience',
-        path:'/experience',
+        path: '/experience',
         defaultSize: { width: 920, height: 590 },
         defaultPosition: { x: 260, y: 10 },
     },
     [WINDOW_IDS.CONTACT]: {
         title: 'Contact',
-        path:'/contact',
+        path: '/contact',
         defaultSize: { width: 500, height: 590 },
         defaultPosition: { x: 350, y: 10 },
     },
     [WINDOW_IDS.SETTINGS]: {
         title: 'Settings',
-        path:'/settings',
+        path: '/settings',
         defaultSize: { width: 950, height: 590 },
         defaultPosition: { x: 420, y: 10 },
     },
     [WINDOW_IDS.HELP]: {
         title: 'Help',
-        path:'/help',
+        path: '/help',
         defaultSize: { width: 920, height: 590 },
         defaultPosition: { x: 290, y: 10 },
+    },
+    [WINDOW_IDS.RESUME]: {
+        title: 'Resume',
+        path: '/resume',
+        defaultSize: { width: 600, height: 700 },
+        defaultPosition: { x: 200, y: 60 },
     },
 };
