@@ -3,7 +3,8 @@ import { useWindowStore } from '../../store/windowStore';
 import { useSettingsStore } from '../../store/settingsStore';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS } from '../../constants/windowConfig';
-import { useProjectWindowStore } from '../../store/projectWindowStore';;
+import { useProjectWindowStore } from '../../store/projectWindowStore';
+import { wallpapers } from '../../constants/wallpaperConfig';
 import Window from '../window/Window';
 import About from '../../pages/About';
 import Work from '../../pages/Work';
@@ -51,9 +52,7 @@ const Desktop = () => {
             className="absolute left-0 right-0 bottom-0 bg-[var(--color-bg)]"
             style={{
                 top: 'var(--navbar-height)',
-                backgroundImage: `url(/src/assets/wallpapers/${selectedWallpaper}.webp)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                background: wallpapers.find((w) => w.id === selectedWallpaper)?.gradient,
             }}
         >
             <div className={iconContainerClass}>

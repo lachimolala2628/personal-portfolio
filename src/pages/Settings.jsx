@@ -23,8 +23,8 @@ const Settings = () => {
                         <button
                             onClick={() => setTheme('light')}
                             className={`px-4 py-2 text-sm transition ${theme === 'light'
-                                    ? 'bg-[var(--color-accent)] text-[var(--color-bg)]'
-                                    : 'bg-[var(--color-surface)] text-[var(--color-text-primary)]'
+                                ? 'bg-[var(--color-accent)] text-[var(--color-bg)]'
+                                : 'bg-[var(--color-surface)] text-[var(--color-text-primary)]'
                                 }`}
                         >
                             Light
@@ -32,8 +32,8 @@ const Settings = () => {
                         <button
                             onClick={() => setTheme('dark')}
                             className={`px-4 py-2 text-sm transition ${theme === 'dark'
-                                    ? 'bg-[var(--color-accent)] text-[var(--color-bg)]'
-                                    : 'bg-[var(--color-surface)] text-[var(--color-text-primary)]'
+                                ? 'bg-[var(--color-accent)] text-[var(--color-bg)]'
+                                : 'bg-[var(--color-surface)] text-[var(--color-text-primary)]'
                                 }`}
                         >
                             Dark
@@ -56,8 +56,8 @@ const Settings = () => {
                                 key={wp.id}
                                 onClick={() => setWallpaper(wp.id)}
                                 className={`flex flex-col rounded overflow-hidden border-2 transition ${selectedWallpaper === wp.id
-                                        ? 'border-[var(--color-accent)]'
-                                        : 'border-[var(--color-border)] hover:border-[var(--color-text-secondary)]'
+                                    ? 'border-[var(--color-accent)]'
+                                    : 'border-[var(--color-border)] hover:border-[var(--color-text-secondary)]'
                                     }`}
                             >
                                 <div
@@ -81,17 +81,13 @@ const Settings = () => {
                                 key={wp.id}
                                 onClick={() => setWallpaper(wp.id)}
                                 className={`flex flex-col rounded overflow-hidden border-2 transition ${selectedWallpaper === wp.id
-                                        ? 'border-[var(--color-accent)]'
-                                        : 'border-[var(--color-border)] hover:border-[var(--color-text-secondary)]'
+                                    ? 'border-[var(--color-accent)]'
+                                    : 'border-[var(--color-border)] hover:border-[var(--color-text-secondary)]'
                                     }`}
                             >
                                 <div
                                     className="h-20 w-full"
-                                    style={{
-                                        backgroundImage: `url(/src/assets/wallpapers/${wp.id}.webp)`,
-                                        backgroundSize: 'cover',
-                                        backgroundPosition: 'center',
-                                    }}
+                                    style={{ background: wp.gradient }}
                                 />
                                 <span className="text-xs text-[var(--color-text-primary)] bg-[var(--color-surface-elevated)] px-2 py-1 text-left">
                                     {wp.name}
