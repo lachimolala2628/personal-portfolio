@@ -209,7 +209,7 @@ const ProjectWindow = ({ slug }) => {
                 <div className="project-titlebar flex items-center justify-between px-3 h-[var(--titlebar-height)] bg-[var(--color-surface-elevated)] cursor-move select-none shrink-0">
                     <div className="flex items-center gap-2">
                         <span className="text-sm text-[var(--color-text-primary)] font-medium font-display">{project.name}</span>
-                        {isActive && <span className="w-2 h-2 rounded-full bg-orange-500" aria-label="Active window" />}
+                        {isActive && <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" aria-label="Active window" />}
                     </div>
                     <div className="window-controls flex items-center gap-1">
                         {!isMobile && (

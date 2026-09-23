@@ -80,7 +80,7 @@ const Taskbar = () => {
 
                         {win.isOpen && (
                             <span
-                                className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${isActive ? 'bg-orange-500' : 'bg-[var(--color-text-secondary)]'
+                                className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[var(--color-accent)]' : 'bg-[var(--color-text-secondary)]'
                                     }`}
                                 aria-hidden="true"
                             />

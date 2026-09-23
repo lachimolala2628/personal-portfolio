@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSettingsStore } from './store/settingsStore';
+import { wallpapers } from './constants/wallpaperConfig';
 import Navbar from './components/layout/Navbar';
 import Desktop from './components/layout/Desktop';
 import Taskbar from './components/layout/Taskbar';
@@ -10,10 +11,18 @@ const App = () => {
   const [isBooting, setIsBooting] = useState(true);
   const theme = useSettingsStore((s) => s.theme);
   const brightness = useSettingsStore((s) => s.brightness);
+  const selectedWallpaper = useSettingsStore((s) => s.selectedWallpaper);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const wallpaper = wallpapers.find((w) => w.id === selectedWallpaper);
+    if (wallpaper) {
+      document.documentElement.style.setProperty('--color-accent', wallpaper.accent);
+    }
+  }, [selectedWallpaper]);
 
   if (isBooting) {
     return <BootScreen onComplete={() => setIsBooting(false)} />;

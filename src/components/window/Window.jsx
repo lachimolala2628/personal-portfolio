@@ -134,7 +134,7 @@ const Window = ({ id, children }) => {
                             {title}
                         </span>
                         {isActive && (
-                            <span className="w-2 h-2 rounded-full bg-orange-500" aria-label="Active window" />
+                            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" aria-label="Active window" />
                         )}
                     </div>
                     <WindowControls id={id} isMobile={isMobile} />
