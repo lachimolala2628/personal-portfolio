@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSettingsStore } from './store/settingsStore';
 import { wallpapers } from './constants/wallpaperConfig';
 import Navbar from './components/layout/Navbar';
 import Desktop from './components/layout/Desktop';
 import Taskbar from './components/layout/Taskbar';
 import RouteSync from './components/routing/RouteSync';
-import BootScreen from './components/layout/BootScreen';
+import LockScreen from './components/layout/LockScreen';
 
 const App = () => {
-  const [isBooting, setIsBooting] = useState(true);
+  const [showLock, setShowLock] = useState(true);
   const theme = useSettingsStore((s) => s.theme);
   const brightness = useSettingsStore((s) => s.brightness);
   const selectedWallpaper = useSettingsStore((s) => s.selectedWallpaper);
@@ -24,8 +24,12 @@ const App = () => {
     }
   }, [selectedWallpaper]);
 
-  if (isBooting) {
-    return <BootScreen onComplete={() => setIsBooting(false)} />;
+  const handleUnlock = () => {
+    setShowLock(false);
+  };
+
+  if (showLock) {
+    return <LockScreen onUnlock={handleUnlock} />;
   }
 
   return (
@@ -39,6 +43,6 @@ const App = () => {
       <Taskbar />
     </div>
   );
-}
+};
 
 export default App;

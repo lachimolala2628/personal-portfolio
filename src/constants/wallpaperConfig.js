@@ -9,13 +9,13 @@ export const wallpapers = [
         id: 'slick-carbon',
         name: 'Slick Carbon',
         gradient: 'linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%)',
-        accent: '#4a9eff',
+        accent: '#c9c4bc',
     },
     {
         id: 'landing-aircraft',
         name: 'Landing Aircraft',
         gradient: 'linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%)',
-        accent: '#ff8c42',
+        accent: '#1e5fb8',
     },
     {
         id: 'sun-veggie',
