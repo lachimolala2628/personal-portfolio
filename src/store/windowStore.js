@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { WINDOW_IDS, windowConfig } from '../constants/windowConfig';
 import { useZIndexStore } from './zIndexStore';
 
@@ -16,94 +17,108 @@ const buildInitialWindows = () => {
     return windows;
 };
 
-export const useWindowStore = create((set, get) => ({
-    windows: buildInitialWindows(),
-    focusedWindow: null,
-    isTaskbarVisible: true,
+export const useWindowStore = create(
+    persist(
+        (set, get) => ({
+            windows: buildInitialWindows(),
+            focusedWindow: null,
+            isTaskbarVisible: true,
 
-    setTaskbarVisible: (visible) => set({ isTaskbarVisible: visible }),
+            setTaskbarVisible: (visible) => set({ isTaskbarVisible: visible }),
 
-    initializeApp: () => {
-        const hasVisited = localStorage.getItem('hasVisitedBefore');
-        if (!hasVisited) {
-            get().openWindow(WINDOW_IDS.ABOUT);
-            localStorage.setItem('hasVisitedBefore', 'true');
-        }
-    },
-
-    openWindow: (id, isMobile = false) =>
-        set((s) => {
-            const newZ = useZIndexStore.getState().getNextZIndex('window', id);
-            let updatedWindows = { ...s.windows };
-
-            if (isMobile) {
-                Object.keys(updatedWindows).forEach((windowId) => {
-                    if (windowId !== id && updatedWindows[windowId].isOpen) {
-                        updatedWindows[windowId] = { ...updatedWindows[windowId], isOpen: false };
-                    }
-                });
-            }
-
-            updatedWindows[id] = {
-                ...updatedWindows[id],
-                isOpen: true,
-                state: 'normal',
-                zIndex: newZ,
-            };
-
-            return {
-                windows: updatedWindows,
-                focusedWindow: id,
-            };
-        }),
-
-    closeWindow: (id) =>
-        set((s) => ({
-            windows: { ...s.windows, [id]: { ...s.windows[id], isOpen: false } },
-            focusedWindow: s.focusedWindow === id ? null : s.focusedWindow,
-        })),
-
-    focusWindow: (id) =>
-        set((s) => {
-            const newZ = useZIndexStore.getState().getNextZIndex('window', id);
-            return {
-                windows: { ...s.windows, [id]: { ...s.windows[id], zIndex: newZ } },
-                focusedWindow: id,
-            };
-        }),
-
-    minimizeWindow: (id) =>
-        set((s) => ({
-            windows: { ...s.windows, [id]: { ...s.windows[id], state: 'minimized' } },
-        })),
-
-    toggleMaximize: (id) =>
-        set((s) => ({
-            windows: {
-                ...s.windows,
-                [id]: {
-                    ...s.windows[id],
-                    state: s.windows[id].state === 'maximized' ? 'normal' : 'maximized',
-                },
+            initializeApp: () => {
+                const hasVisited = localStorage.getItem('hasVisitedBefore');
+                if (!hasVisited) {
+                    get().openWindow(WINDOW_IDS.ABOUT);
+                    localStorage.setItem('hasVisitedBefore', 'true');
+                }
             },
-        })),
 
-    restoreWindow: (id) =>
-        set((s) => {
-            const newZ = useZIndexStore.getState().getNextZIndex('window', id);
-            return {
-                windows: { ...s.windows, [id]: { ...s.windows[id], state: 'normal', zIndex: newZ } },
-                focusedWindow: id,
-            };
+            openWindow: (id, isMobile = false) =>
+                set((s) => {
+                    const newZ = useZIndexStore.getState().getNextZIndex('window', id);
+                    let updatedWindows = { ...s.windows };
+
+                    if (isMobile) {
+                        Object.keys(updatedWindows).forEach((windowId) => {
+                            if (windowId !== id && updatedWindows[windowId].isOpen) {
+                                updatedWindows[windowId] = { ...updatedWindows[windowId], isOpen: false };
+                            }
+                        });
+                    }
+
+                    updatedWindows[id] = {
+                        ...updatedWindows[id],
+                        isOpen: true,
+                        state: 'normal',
+                        zIndex: newZ,
+                    };
+
+                    return { windows: updatedWindows, focusedWindow: id };
+                }),
+
+            closeWindow: (id) =>
+                set((s) => ({
+                    windows: { ...s.windows, [id]: { ...s.windows[id], isOpen: false } },
+                    focusedWindow: s.focusedWindow === id ? null : s.focusedWindow,
+                })),
+
+            focusWindow: (id) =>
+                set((s) => {
+                    const newZ = useZIndexStore.getState().getNextZIndex('window', id);
+                    return {
+                        windows: { ...s.windows, [id]: { ...s.windows[id], zIndex: newZ } },
+                        focusedWindow: id,
+                    };
+                }),
+
+            minimizeWindow: (id) =>
+                set((s) => ({
+                    windows: { ...s.windows, [id]: { ...s.windows[id], state: 'minimized' } },
+                })),
+
+            toggleMaximize: (id) =>
+                set((s) => ({
+                    windows: {
+                        ...s.windows,
+                        [id]: {
+                            ...s.windows[id],
+                            state: s.windows[id].state === 'maximized' ? 'normal' : 'maximized',
+                        },
+                    },
+                })),
+
+            restoreWindow: (id) =>
+                set((s) => {
+                    const newZ = useZIndexStore.getState().getNextZIndex('window', id);
+                    return {
+                        windows: { ...s.windows, [id]: { ...s.windows[id], state: 'normal', zIndex: newZ } },
+                        focusedWindow: id,
+                    };
+                }),
+
+            updatePosition: (id, position) =>
+                set((s) => ({
+                    windows: { ...s.windows, [id]: { ...s.windows[id], position } },
+                })),
+
+            updateSize: (id, size) =>
+                set((s) => ({
+                    windows: { ...s.windows, [id]: { ...s.windows[id], size } },
+                })),
         }),
-
-    updatePosition: (id, position) =>
-        set((s) => ({
-            windows: { ...s.windows, [id]: { ...s.windows[id], position } },
-        })),
-
-    updateSize: (id, size) =>
-        set((s) => ({
-            windows: { ...s.windows, [id]: { ...s.windows[id], size } },
-        })),
-}));
+        {
+            name: 'window-store',
+            storage: createJSONStorage(() => sessionStorage),
+            partialize: (s) => ({
+                windows: s.windows,
+                focusedWindow: s.focusedWindow,
+            }),
+            merge: (persisted, current) => ({
+                ...current,
+                ...persisted,
+                windows: { ...current.windows, ...(persisted?.windows ?? {}) },
+            }),
+        }
+    )
+);

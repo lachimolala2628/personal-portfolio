@@ -8,7 +8,7 @@ import RouteSync from './components/routing/RouteSync';
 import LockScreen from './components/layout/LockScreen';
 
 const App = () => {
-  const [showLock, setShowLock] = useState(true);
+  const [showLock, setShowLock] = useState(() => !sessionStorage.getItem('unlocked'));
   const theme = useSettingsStore((s) => s.theme);
   const brightness = useSettingsStore((s) => s.brightness);
   const selectedWallpaper = useSettingsStore((s) => s.selectedWallpaper);
@@ -25,6 +25,7 @@ const App = () => {
   }, [selectedWallpaper]);
 
   const handleUnlock = () => {
+    sessionStorage.setItem('unlocked', 'true');
     setShowLock(false);
   };
 
