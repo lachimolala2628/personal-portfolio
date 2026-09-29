@@ -4,8 +4,8 @@ const WALLPAPER_KEY = 'selectedWallpaper';
 const THEME_KEY = 'theme';
 const BRIGHTNESS_KEY = 'brightness';
 
-const DEFAULT_WALLPAPER = 'dusk';
-const DEFAULT_THEME = 'dark';
+const DEFAULT_WALLPAPER = 'landing-aircraft';
+const DEFAULT_THEME = 'light';
 const DEFAULT_BRIGHTNESS = 100;
 
 const getStored = (key, fallback) => {
