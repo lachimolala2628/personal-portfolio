@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useSettingsStore } from '../../store/settingsStore';
 import { useWindowStore } from '../../store/windowStore';
 import { WINDOW_IDS } from '../../constants/windowConfig';
+import { PiSunLight, PiMoonThin } from 'react-icons/pi';
 import SearchDialog from './SearchDialog';
-import { PiSunLight } from "react-icons/pi";
+import logoLight from '../../assets/images/logo-light.svg';
+import logoDark from '../../assets/images/logo-dark.svg';
 
 const Navbar = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -39,9 +41,7 @@ const Navbar = () => {
         <>
             <div className="fixed top-0 left-0 right-0 h-[var(--navbar-height)] flex items-center justify-between px-4 bg-[var(--color-bg)] border-b border-[var(--color-border)] z-[9999]">
                 <div className="flex items-center gap-4">
-                    <div className="w-7 h-7 bg-[var(--color-surface-elevated)] border border-[var(--color-border)] rounded flex items-center justify-center">
-                        <span className="text-xs font-display text-[var(--color-text-primary)]">A</span>
-                    </div>
+                    <img src={theme === 'dark' ? logoLight : logoDark} alt="Logo" className="w-7 h-7" />
                     <button
                         onClick={() => setIsSearchOpen(true)}
                         className="text-sm text-[var(--color-text-primary)] hover:opacity-70 transition"
@@ -89,7 +89,7 @@ const Navbar = () => {
                                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                                     className="text-xs px-2 py-1 border border-[var(--color-border)] rounded bg-[var(--color-surface-elevated)] text-[var(--color-text-primary)]"
                                 >
-                                    {theme === 'dark' ? 'Dark' : 'Light'}
+                                    {theme === 'light' ? <PiSunLight /> : <PiMoonThin />}
                                 </button>
                             </div>
 

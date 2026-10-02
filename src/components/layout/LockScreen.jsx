@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { useSettingsStore } from '../../store/settingsStore';
 import { wallpapers } from '../../constants/wallpaperConfig';
+import logoLight from '../../assets/images/logo-light.svg';
 
 function LockScreen({ onUnlock }) {
     const [time, setTime] = useState(new Date());
@@ -64,6 +65,12 @@ function LockScreen({ onUnlock }) {
             </div>
 
             <div className="flex flex-col items-center mt-6">
+                <img
+                    src={logoLight}
+                    alt="Logo"
+                    className="w-20 h-20 mb-2"
+                    style={{ animation: 'logoSpin 6s linear infinite' }}
+                />
                 <h2 className="text-xl font-display text-white">Ayush Kumar</h2>
                 <p className="text-xs tracking-widest text-white/70 uppercase mt-1">Frontend Developer</p>
             </div>
