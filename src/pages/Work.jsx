@@ -16,7 +16,7 @@ const Work = () => {
             <div>
                 <h1 className="text-3xl font-display text-[var(--color-text-primary)] mb-2">Work</h1>
                 <p className="text-[var(--color-text-secondary)]">
-                    Selected projects — freelance client work and personal builds.
+                    Explore selected projects with stack choices and delivery outcomes. This section highlights both client engagements and personal builds.
                 </p>
             </div>
 

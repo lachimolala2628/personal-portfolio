@@ -3,18 +3,16 @@ import React from 'react'
 const contactLinks = [
     {
         label: 'Email',
-        value: 'your.email@example.com',
-        href: 'mailto:your.email@example.com',
+        value: 'aayushkumar1228@gmail.com',
+        href: 'mailto:aayushkumar1228@gmail.com',
     },
     {
         label: 'LinkedIn',
-        value: 'linkedin.com/in/yourprofile',
-        href: '#',
+        href: 'https://www.linkedin.com/in/ayush-kumar2822',
     },
     {
         label: 'GitHub',
-        value: 'github.com/yourusername',
-        href: '#',
+        href: 'https://github.com/lachimolala2628',
     },
 ];
 
@@ -24,7 +22,7 @@ const Contact = () => {
             <div>
                 <h1 className="text-3xl font-display text-[var(--color-text-primary)] mb-2">Contact</h1>
                 <p className="text-[var(--color-text-secondary)]">
-                    Let's connect — for project inquiries, collaborations, or just to say hello.
+                    Let's connect—whether you're hiring for a frontend role, looking to collaborate on a project, or just want to discuss web development and emerging tech.
                 </p>
             </div>
 
@@ -45,7 +43,7 @@ const Contact = () => {
                                 <span className="text-xs tracking-wider text-[var(--color-text-secondary)] block mb-0.5">
                                     {link.label.toUpperCase()}
                                 </span>
-                                <span className="text-[var(--color-text-primary)]">{link.value}</span>
+                                {link.value && <span className="text-[var(--color-text-primary)]">{link.value}</span>}
                             </div>
                             <span className="text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition">
                                 ↗
@@ -53,6 +51,11 @@ const Contact = () => {
                         </button>
                     ))}
                 </div>
+            </div>
+            <div className="flex flex-col gap-2">
+                <p className="text-[var(--color-text-secondary)] text-sm italic">
+                    I typically respond within 24 hours.
+                </p>
             </div>
         </div>
     )

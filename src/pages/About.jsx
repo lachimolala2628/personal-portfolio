@@ -48,19 +48,15 @@ const About = () => {
 
             <div className="flex flex-col gap-3 text-[var(--color-text-secondary)]">
                 <p>
-                    Based in New Delhi, I'm a frontend developer and UI/UX designer with around 2 years of
-                    freelance experience. I specialize in building clean, functional interfaces using
-                    React, Next.js, and Tailwind CSS — turning ideas into products that actually feel good
-                    to use.
+                    Based in New Delhi, I am a Frontend Engineer with two years of freelance experience. I specialize in building clean, performant web applications using React, Next.js, and Tailwind CSS—transforming complex ideas into refined, intuitive digital experiences.
                 </p>
                 <p>
-                    Outside of code, I'm usually behind a camera, painting, or lost in a book — and I'm
-                    always poking around new technologies just to see how they work. You can find me on{' '}
-                    <a href="#" className="text-[var(--color-accent)] underline">
+                    Outside of engineering, I pursue photography, painting, and reading, always staying curious about emerging technologies. Connect with me on{' '}
+                    <a href="https://www.linkedin.com/in/ayush-kumar2822" className="text-[var(--color-accent)] underline">
                         LinkedIn
                     </a>{' '}
                     or{' '}
-                    <a href="#" className="text-[var(--color-accent)] underline">
+                    <a href="https://github.com/lachimolala2628" className="text-[var(--color-accent)] underline">
                         GitHub
                     </a>
                     .
@@ -76,11 +72,15 @@ const About = () => {
                 <ul className="p-4 flex flex-col gap-2">
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Completing a self-paced BCA through IGNOU.</span>
+                        <span>Pursuing a Bachelor of Computer Applications through IGNOU, balancing structured coursework with real-world project work.</span>
                     </li>
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Building personal projects and exploring new tools in the React and Next.js ecosystem.</span>
+                        <span>Studying AI and ML fundamentals alongside the applied AI work already in Inkwell, Lume-Studio, and AI Resume Analyzer.</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
+                        <span className="text-[var(--color-accent)] mt-1">•</span>
+                        <span>Shipping full-stack side projects that push into AI-powered tools and 3D on the web.</span>
                     </li>
                 </ul>
             </div>
@@ -89,7 +89,7 @@ const About = () => {
                 <span className="text-xs tracking-wider text-[var(--color-text-secondary)] font-medium">
                     FULL TIMELINE
                 </span>
-                <p className="text-[var(--color-text-secondary)] text-sm">
+                <p className="text-[var(--color-text-secondary)] text-sm italic">
                     View my complete experience timeline in a dedicated window.
                 </p>
                 <button

@@ -6,9 +6,9 @@ const timeline = [
         org: 'IGNOU',
         type: 'Distance Learning',
         isCurrent: true,
-        dates: 'June 2024 - Present',
+        dates: 'June 2024 - June 2027',
         location: 'New Delhi, India',
-        description: 'Bachelor of Computer Application, coursework in Data Structures, OS, Computer Networks, DBMS, Algorithms, and Web Programming.',
+        description: 'Bachelor of Computer Applications. Core coursework includes Data Structures & Algorithms, Database Management Systems (DBMS), Operating Systems, Computer Networks, and Web Programming.',
     },
     {
         role: 'Frontend Developer',
@@ -17,7 +17,7 @@ const timeline = [
         isCurrent: false,
         dates: 'April 2023 - October 2025',
         location: 'New Delhi, India',
-        description: 'Built responsive React and JavaScript web applications for independent clients, owning end-to-end delivery from design to deployment, and collaborating within small development teams across design, development, and cross-browser testing.',
+        description: 'Architected and deployed responsive React and JavaScript web applications for diverse clients. Owned end-to-end project lifecycles from Figma designs to production, collaborating closely with stakeholders on cross-browser compatibility, UI performance, and clean code standards.',
     },
     {
         role: 'Frontend Developer',
@@ -26,7 +26,7 @@ const timeline = [
         isCurrent: false,
         dates: 'April 2023 - June 2023',
         location: 'New Delhi, India',
-        description: 'Raised accessibility score to 97/100 through semantic HTML restructuring and performance optimization. Delivered a fully responsive mobile-first redesign from Figma to production, cutting client-reported UI bugs by 40% through cross-browser testing.',
+        description: 'Engineered a mobile-first website redesign from Figma to production. Elevating the accessibility score to **97/100** by restructuring semantic HTML and optimizing render performance, while reducing UI defects by **40%** through rigorous cross-browser testing.',
     },
     {
         role: 'Web Design & Development Certification',
@@ -34,8 +34,8 @@ const timeline = [
         type: 'Certification',
         isCurrent: false,
         dates: 'October 2022 - April 2023',
-        location: '',
-        description: 'The starting point — this is where I first learned web development and found my way into frontend engineering.',
+        location: 'New Delhi, India',
+        description: 'Foundational training in core web standards, UI layout principles, and frontend engineering workflows.',
     },
 ];
 
@@ -58,11 +58,15 @@ const Experience = () => {
                 <ul className="p-4 flex flex-col gap-2">
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Completing a self-paced BCA through IGNOU.</span>
+                        <span>Pursuing a Bachelor of Computer Applications through IGNOU, balancing structured coursework with real-world project work.</span>
                     </li>
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Building personal projects and exploring new tools in the React and Next.js ecosystem.</span>
+                        <span>Studying AI and ML fundamentals alongside the applied AI work already in Inkwell, Lume-Studio, and AI Resume Analyzer.</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
+                        <span className="text-[var(--color-accent)] mt-1">•</span>
+                        <span>Shipping full-stack side projects that push into AI-powered tools and 3D on the web.</span>
                     </li>
                 </ul>
             </div>
