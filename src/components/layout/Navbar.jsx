@@ -41,7 +41,7 @@ const Navbar = () => {
         <>
             <div className="fixed top-0 left-0 right-0 h-[var(--navbar-height)] flex items-center justify-between px-4 bg-[var(--color-bg)] border-b border-[var(--color-border)] z-[9999]">
                 <div className="flex items-center gap-4">
-                    <img src={theme === 'dark' ? logoLight : logoDark} alt="Logo" className="w-7 h-7" />
+                    <img src={theme === 'dark' ? logoLight : logoDark} alt="Logo" className="w-7 h-7" style={{ animation: 'logoSpin 6s linear infinite' }} />
                     <button
                         onClick={() => setIsSearchOpen(true)}
                         className="text-sm text-[var(--color-text-primary)] hover:opacity-70 transition"
