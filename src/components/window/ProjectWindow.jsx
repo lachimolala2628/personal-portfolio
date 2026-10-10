@@ -245,16 +245,28 @@ const ProjectWindow = ({ slug }) => {
                                     VISUALS
                                 </button>
                             </div>
-                            <div className="window-content flex-1 min-h-0 overflow-auto p-4" onScroll={handleScroll}>
+                            <div
+                                className="window-content flex-1 min-h-0 overflow-auto p-4"
+                                data-active={isActive}
+                                onScroll={handleScroll}
+                            >
                                 {mobileTab === 'details' ? <DetailsContent /> : <VisualsContent />}
                             </div>
                         </div>
                     ) : (
                         <div className="flex h-full min-h-0 overflow-hidden">
-                            <div className="window-content w-[40%] shrink-0 min-h-0 overflow-auto p-4 border-r border-[var(--color-border)]" onScroll={handleScroll}>
+                            <div
+                                className="window-content w-[40%] shrink-0 min-h-0 overflow-auto p-4 border-r border-[var(--color-border)]"
+                                data-active={isActive}
+                                onScroll={handleScroll}
+                            >
                                 <DetailsContent />
                             </div>
-                            <div className="window-content flex-1 min-h-0 overflow-auto p-4" onScroll={handleScroll}>
+                            <div
+                                className="window-content flex-1 min-h-0 overflow-auto p-4"
+                                data-active={isActive}
+                                onScroll={handleScroll}
+                            >
                                 <VisualsContent />
                             </div>
                         </div>

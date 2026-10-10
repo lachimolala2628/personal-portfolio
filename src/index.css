@@ -106,6 +106,17 @@ body {
     position: relative;
 }
 
+.window-content {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    /* Firefox: hidden */
+}
+
+.window-content[data-active='true'] {
+    scrollbar-color: var(--color-border) transparent;
+    /* Firefox: visible */
+}
+
 .window-content::-webkit-scrollbar {
     width: 6px;
 }
@@ -115,8 +126,12 @@ body {
 }
 
 .window-content::-webkit-scrollbar-thumb {
-    background: var(--color-border);
+    background: transparent;
     border-radius: 3px;
+}
+
+.window-content[data-active='true']::-webkit-scrollbar-thumb {
+    background: var(--color-border);
 }
 
 .font-display {

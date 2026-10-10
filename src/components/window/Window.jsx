@@ -77,12 +77,12 @@ const Window = ({ id, children }) => {
 
         const maxX = windowWidth - clampedWidth - SCREEN_MARGIN;
         const clampedX = Math.max(SCREEN_MARGIN, Math.min(win.position.x, maxX));
-        const clampedY = Math.max(NAVBAR_HEIGHT + SCREEN_MARGIN, Math.min(win.position.y, windowHeight - TITLEBAR_HEIGHT - SCREEN_MARGIN));
+        const clampedY = Math.max(0, Math.min(win.position.y, windowHeight - NAVBAR_HEIGHT - TITLEBAR_HEIGHT - SCREEN_MARGIN));
 
         currentSize = { width: clampedWidth, height: TITLEBAR_HEIGHT };
         currentPosition = { x: clampedX, y: clampedY };
     } else {
-        // Desktop/tablet normal state — clamp against actual usable screen size
+        // Desktop/tablet normal state: clamp against actual usable screen size
         const configuredWidth = parseInt(win.size.width) || win.size.width;
         const configuredHeight = parseInt(win.size.height) || win.size.height;
 
@@ -143,6 +143,7 @@ const Window = ({ id, children }) => {
                 {!isMinimized && (
                     <div
                         className="window-content flex-1 overflow-auto p-4 text-[var(--color-text-primary)]"
+                        data-active={isActive}
                         style={isTouchDevice ? { paddingBottom: TASKBAR_HEIGHT_MOBILE } : undefined}
                         onScroll={handleScroll}
                     >
