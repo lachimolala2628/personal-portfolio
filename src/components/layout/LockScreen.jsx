@@ -4,7 +4,9 @@ import { useSettingsStore } from '../../store/settingsStore';
 import { wallpapers } from '../../constants/wallpaperConfig';
 import logoLight from '../../assets/images/logo-light.svg';
 
-function LockScreen({ onUnlock }) {
+const UNLOCK_DURATION = 450;
+
+const LockScreen = ({ onUnlock }) => {
     const [time, setTime] = useState(new Date());
     const [isUnlocking, setIsUnlocking] = useState(false);
     const selectedWallpaper = useSettingsStore((s) => s.selectedWallpaper);
@@ -19,7 +21,7 @@ function LockScreen({ onUnlock }) {
     const handleUnlock = () => {
         if (isUnlocking) return;
         setIsUnlocking(true);
-        setTimeout(() => onUnlock(), 1200);
+        setTimeout(() => onUnlock(), UNLOCK_DURATION);
     };
 
     const stopClick = (e) => e.stopPropagation();
@@ -39,7 +41,7 @@ function LockScreen({ onUnlock }) {
     return (
         <div
             onClick={handleUnlock}
-            className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center gap-4 cursor-pointer transition-opacity duration-1000 ${isUnlocking ? 'opacity-0' : 'opacity-100'}`}
+            className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center gap-4 cursor-pointer transition-[opacity,transform] duration-[450ms] ease-out ${isUnlocking ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`}
             style={{ background: wallpaper.gradient }}
         >
             <p

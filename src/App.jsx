@@ -29,20 +29,20 @@ const App = () => {
     setShowLock(false);
   };
 
-  if (showLock) {
-    return <LockScreen onUnlock={handleUnlock} />;
-  }
-
   return (
-    <div
-      className="w-screen h-screen overflow-hidden relative"
-      style={{ filter: `brightness(${brightness}%)` }}
-    >
-      <RouteSync />
-      <Navbar />
-      <Desktop />
-      <Taskbar />
-    </div>
+    <>
+      <div
+        className="w-screen h-screen overflow-hidden relative"
+        style={{ filter: `brightness(${brightness}%)` }}
+      >
+        <RouteSync />
+        <Navbar />
+        <Desktop />
+        <Taskbar />
+      </div>
+
+      {showLock && <LockScreen onUnlock={handleUnlock} />}
+    </>
   );
 };
 

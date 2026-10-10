@@ -100,13 +100,13 @@ const About = () => {
                 </button>
             </div>
 
-            <div className="hidden lg:flex justify-center items-end mt-4">
+            {/* <div className="hidden lg:flex justify-center items-end mt-4">
                 <div className="w-32 h-24 border-2 border-dashed border-[var(--color-border)] rounded flex items-center justify-center">
                     <span className="text-xs text-[var(--color-text-secondary)] text-center px-2">
                         Custom illustration goes here
                     </span>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
