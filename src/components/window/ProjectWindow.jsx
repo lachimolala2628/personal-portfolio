@@ -205,7 +205,12 @@ const ProjectWindow = ({ slug }) => {
             style={{ zIndex: projectState.zIndex }}
             onMouseDown={() => focusProject(slug)}
         >
-            <div className="flex flex-col h-full min-h-0 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-window)] overflow-hidden shadow-[var(--shadow-window)]">
+            <div
+                className="flex flex-col h-full min-h-0 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-window)] overflow-hidden transition-shadow duration-200"
+                style={{
+                    boxShadow: isActive ? 'var(--shadow-window-focused)' : 'var(--shadow-window)',
+                }}
+            >
                 <div className="project-titlebar flex items-center justify-between px-3 h-[var(--titlebar-height)] bg-[var(--color-surface-elevated)] cursor-move select-none shrink-0">
                     <div className="flex items-center gap-2">
                         <span className="text-sm text-[var(--color-text-primary)] font-medium font-display">{project.name}</span>
