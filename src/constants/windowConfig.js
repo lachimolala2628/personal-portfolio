@@ -6,6 +6,7 @@ export const WINDOW_IDS = {
     SETTINGS: 'settings',
     HELP: 'help',
     RESUME: 'resume',
+    TERMINAL: 'terminal',
 };
 
 export const windowConfig = {
@@ -50,5 +51,12 @@ export const windowConfig = {
         path: '/resume',
         defaultSize: { width: 600, height: 700 },
         defaultPosition: { x: 200, y: 60 },
+    },
+    [WINDOW_IDS.TERMINAL]: {
+        title: 'Terminal',
+        path: '/terminal',
+        bare: true,
+        defaultSize: { width: 640, height: 420 },
+        defaultPosition: { x: 240, y: 40 },
     },
 };

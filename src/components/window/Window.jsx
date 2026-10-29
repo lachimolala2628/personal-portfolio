@@ -35,6 +35,7 @@ const Window = ({ id, children }) => {
     const isMinimized = win.state === 'minimized';
     const isActive = activeType === 'window' && activeId === id;
     const title = windowConfig[id].title;
+    const isBare = Boolean(windowConfig[id].bare);
 
     const handleScroll = (e) => {
         if (!isTouchDevice) return;
@@ -147,9 +148,12 @@ const Window = ({ id, children }) => {
 
                 {!isMinimized && (
                     <div
-                        className="window-content flex-1 overflow-auto p-4 text-[var(--color-text-primary)]"
+                        className={`window-content flex-1 min-h-0 text-[var(--color-text-primary)] ${isBare ? 'overflow-hidden' : 'overflow-auto p-4'}`}
                         data-active={isActive}
-                        style={isTouchDevice ? { paddingBottom: TASKBAR_HEIGHT_MOBILE } : undefined}
+                        style={{
+                            paddingBottom: isTouchDevice ? TASKBAR_HEIGHT_MOBILE : undefined,
+                            background: isBare ? '#161616' : undefined,
+                        }}
                         onScroll={handleScroll}
                     >
                         {children}

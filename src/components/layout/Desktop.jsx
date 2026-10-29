@@ -16,6 +16,8 @@ import Resume from '../../pages/Resume.jsx'
 import ProjectWindow from '../window/ProjectWindow';
 import FolderIcon from '../ui/FolderIcon.jsx';
 import FileIcon from '../ui/FileIcon.jsx';
+import Terminal from '../../pages/Terminal.jsx';
+import TerminalIcon from '../ui/TerminalIcon.jsx';
 
 const pageComponents = {
     [WINDOW_IDS.ABOUT]: About,
@@ -25,11 +27,13 @@ const pageComponents = {
     [WINDOW_IDS.SETTINGS]: Settings,
     [WINDOW_IDS.HELP]: Help,
     [WINDOW_IDS.RESUME]: Resume,
+    [WINDOW_IDS.TERMINAL]: Terminal,
 };
 
 const desktopIcons = [
     { id: WINDOW_IDS.RESUME, label: 'Resume', icon: FileIcon },
     { id: WINDOW_IDS.WORK, label: 'Work', icon: FolderIcon },
+    { id: WINDOW_IDS.TERMINAL, label: 'Terminal', icon: TerminalIcon },
 ];
 
 const Desktop = () => {
