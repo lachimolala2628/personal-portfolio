@@ -146,13 +146,14 @@ const Window = ({ id, children }) => {
                     <WindowControls id={id} isMobile={isMobile} />
                 </div>
 
-                {!isMinimized && (
+                {(!isMinimized || isBare) && (
                     <div
                         className={`window-content flex-1 min-h-0 text-[var(--color-text-primary)] ${isBare ? 'overflow-hidden' : 'overflow-auto p-4'}`}
                         data-active={isActive}
                         style={{
                             paddingBottom: isTouchDevice ? TASKBAR_HEIGHT_MOBILE : undefined,
                             background: isBare ? '#161616' : undefined,
+                            display: isMinimized ? 'none' : undefined,
                         }}
                         onScroll={handleScroll}
                     >

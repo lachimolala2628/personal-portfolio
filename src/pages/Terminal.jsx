@@ -5,8 +5,9 @@ import { useZIndexStore } from '../store/zIndexStore';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { WINDOW_IDS, windowConfig } from '../constants/windowConfig';
 import { getProjectBySlug } from '../constants/projectsConfig';
+import SnakeGame from '../components/terminal/SnakeGame';
 
-const PROMPT = 'guest@ayush:~$';
+const PROMPT = 'guest@portfolio:~$';
 const DIFFICULTIES = ['easy', 'medium', 'hard'];
 const TERMINAL_FONT =
     "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
@@ -58,23 +59,30 @@ const Terminal = () => {
     const isActive = activeType === 'window' && activeId === WINDOW_IDS.TERMINAL;
 
     const [lines, setLines] = useState([
-        out('Welcome to the Ayush OS terminal.'),
+        out('Ayush Portfolio Terminal v1.1'),
         out("Type 'help' to see available commands."),
     ]);
     const [input, setInput] = useState('');
     const [history, setHistory] = useState([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
+    const [game, setGame] = useState(null);
     const inputRef = useRef(null);
     const scrollRef = useRef(null);
 
     useEffect(() => {
         const el = scrollRef.current;
         if (el) el.scrollTop = el.scrollHeight;
-    }, [lines]);
+    }, [lines, game]);
 
     useEffect(() => {
-        if (isActive && !isMobile) inputRef.current?.focus();
-    }, [isActive, isMobile]);
+        if (isActive && !isMobile && !game) inputRef.current?.focus();
+    }, [isActive, isMobile, game]);
+
+    const endGame = () => {
+        const level = game;
+        setGame(null);
+        setLines((prev) => [...prev, out(`snake (${level}) closed.`)]);
+    };
 
     const runCommand = (raw) => {
         const trimmed = raw.trim();
@@ -171,7 +179,8 @@ const Terminal = () => {
                     result = [err(`game: unknown difficulty '${args[0]}'. Use easy, medium, or hard.`)];
                     break;
                 }
-                result = [out(`snake (${level}) is coming in the next update.`)];
+                setGame(level);
+                result = [out(`starting snake (${level})...`)];
                 break;
             }
 
@@ -242,40 +251,44 @@ const Terminal = () => {
                 inputRef.current?.focus();
             }}
         >
-            <div
-                ref={scrollRef}
-                className="window-content flex-1 min-h-0 overflow-auto p-3"
-                data-active={isActive}
-            >
-                {lines.map((line, i) => (
-                    <div key={i} className={`whitespace-pre-wrap break-words ${lineClass(line.type)}`}>
-                        {line.type === 'input' ? (
-                            <>
-                                <span className="text-[var(--color-accent)]">{PROMPT}</span> {line.text}
-                            </>
-                        ) : (
-                            line.text
-                        )}
-                    </div>
-                ))}
+            {game ? (
+                <SnakeGame level={game} onExit={endGame} />
+            ) : (
+                <div
+                    ref={scrollRef}
+                    className="window-content flex-1 min-h-0 overflow-auto p-3"
+                    data-active={isActive}
+                >
+                    {lines.map((line, i) => (
+                        <div key={i} className={`whitespace-pre-wrap break-words ${lineClass(line.type)}`}>
+                            {line.type === 'input' ? (
+                                <>
+                                    <span className="text-[var(--color-accent)]">{PROMPT}</span> {line.text}
+                                </>
+                            ) : (
+                                line.text
+                            )}
+                        </div>
+                    ))}
 
-                <div className="flex items-center gap-2">
-                    <span className="shrink-0 text-[var(--color-accent)]">{PROMPT}</span>
-                    <input
-                        ref={inputRef}
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        autoCapitalize="none"
-                        spellCheck={false}
-                        aria-label="Terminal input"
-                        className="flex-1 min-w-0 bg-transparent outline-none border-none p-0"
-                        style={{ font: 'inherit', color: '#f2ede4', caretColor: 'var(--color-accent)' }}
-                    />
+                    <div className="flex items-center gap-2">
+                        <span className="shrink-0 text-[var(--color-accent)]">{PROMPT}</span>
+                        <input
+                            ref={inputRef}
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            autoComplete="off"
+                            autoCorrect="off"
+                            autoCapitalize="none"
+                            spellCheck={false}
+                            aria-label="Terminal input"
+                            className="flex-1 min-w-0 bg-transparent outline-none border-none p-0"
+                            style={{ font: 'inherit', color: '#f2ede4', caretColor: 'var(--color-accent)' }}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
