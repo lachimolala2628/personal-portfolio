@@ -12,6 +12,13 @@ const DIFFICULTIES = ['easy', 'medium', 'hard'];
 const TERMINAL_FONT =
     "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
+const CURSOR_STYLE = 'underline';
+const CURSOR_SHAPES = {
+    underline: { width: '1ch', height: '2px', bottom: '0.2em' },
+    bar: { width: '2px', height: '1.15em', top: '50%', transform: 'translateY(-50%)' },
+    block: { width: '1ch', height: '1.15em', top: '50%', transform: 'translateY(-50%)' },
+};
+
 const COMMANDS = [
     { name: 'apps', usage: 'apps', description: 'list all available apps you can open' },
     { name: 'clear', usage: 'clear', description: 'clear the terminal' },
@@ -47,6 +54,53 @@ const lineClass = (type) => {
     return 'text-[#cfc9be]';
 };
 
+// ---- Tab autocomplete helpers ----
+const ARG_OPTIONS = {
+    open: () => APP_IDS.map((id) => appTitle(id).toLowerCase()),
+    close: () => APP_IDS.map((id) => appTitle(id).toLowerCase()),
+    game: () => DIFFICULTIES,
+    ls: () => ['apps', 'commands', 'open'],
+};
+
+const commonPrefix = (words) => {
+    let prefix = words[0];
+    words.forEach((w) => {
+        while (!w.startsWith(prefix)) prefix = prefix.slice(0, -1);
+    });
+    return prefix;
+};
+
+// Returns { value, matches } or null. value === null means "just list the matches".
+const getCompletion = (rawInput) => {
+    const value = rawInput.replace(/^\s+/, '');
+    const parts = value.split(/\s+/);
+    const index = parts.length - 1;
+    const current = parts[index].toLowerCase();
+    const head = parts.slice(0, index).join(' ');
+
+    let candidates = [];
+    if (index === 0) {
+        candidates = COMMANDS.map((c) => c.name);
+    } else if (index === 1) {
+        const getter = ARG_OPTIONS[parts[0].toLowerCase()];
+        candidates = getter ? getter() : [];
+    }
+
+    const matches = candidates.filter((c) => c.startsWith(current));
+    if (matches.length === 0) return null;
+
+    const build = (word, addSpace) => `${head ? `${head} ` : ''}${word}${addSpace ? ' ' : ''}`;
+
+    if (matches.length === 1) {
+        return { value: build(matches[0], index === 0), matches };
+    }
+    const shared = commonPrefix(matches);
+    if (shared.length > current.length) {
+        return { value: build(shared, false), matches };
+    }
+    return { value: null, matches };
+};
+
 const Terminal = () => {
     const windows = useWindowStore((s) => s.windows);
     const openWindow = useWindowStore((s) => s.openWindow);
@@ -66,13 +120,31 @@ const Terminal = () => {
     const [history, setHistory] = useState([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
     const [game, setGame] = useState(null);
+    const [caret, setCaret] = useState({ pos: 0, scroll: 0 });
+    const [focused, setFocused] = useState(false);
     const inputRef = useRef(null);
     const scrollRef = useRef(null);
+
+    const syncCaret = () => {
+        const el = inputRef.current;
+        if (!el) return;
+        setCaret({ pos: el.selectionStart ?? el.value.length, scroll: el.scrollLeft });
+    };
 
     useEffect(() => {
         const el = scrollRef.current;
         if (el) el.scrollTop = el.scrollHeight;
     }, [lines, game]);
+
+    // After any change to the text (typing, history, Tab), re-read the caret position.
+    useEffect(() => {
+        syncCaret();
+    }, [input]);
+
+    // The input is re-created when a game starts or ends, so reset the focus flag first.
+    useEffect(() => {
+        setFocused(false);
+    }, [game]);
 
     useEffect(() => {
         if (isActive && !isMobile && !game) inputRef.current?.focus();
@@ -82,6 +154,21 @@ const Terminal = () => {
         const level = game;
         setGame(null);
         setLines((prev) => [...prev, out(`snake (${level}) closed.`)]);
+    };
+
+    const handleTab = () => {
+        const completion = getCompletion(input);
+        if (!completion) return;
+        if (completion.value !== null) {
+            setInput(completion.value);
+            setHistoryIndex(-1);
+        } else {
+            setLines((prev) => [
+                ...prev,
+                { type: 'input', text: input },
+                out(completion.matches.join('   ')),
+            ]);
+        }
     };
 
     const runCommand = (raw) => {
@@ -216,7 +303,10 @@ const Terminal = () => {
     };
 
     const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Tab' && !e.shiftKey) {
+            e.preventDefault();
+            handleTab();
+        } else if (e.key === 'Enter') {
             runCommand(input);
             setInput('');
         } else if (e.key === 'ArrowUp') {
@@ -273,19 +363,42 @@ const Terminal = () => {
 
                     <div className="flex items-center gap-2">
                         <span className="shrink-0 text-[var(--color-accent)]">{PROMPT}</span>
-                        <input
-                            ref={inputRef}
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                            autoComplete="off"
-                            autoCorrect="off"
-                            autoCapitalize="none"
-                            spellCheck={false}
-                            aria-label="Terminal input"
-                            className="flex-1 min-w-0 bg-transparent outline-none border-none p-0"
-                            style={{ font: 'inherit', color: '#f2ede4', caretColor: 'var(--color-accent)' }}
-                        />
+                        <div className="relative flex-1 min-w-0">
+                            <input
+                                ref={inputRef}
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                onKeyUp={syncCaret}
+                                onSelect={syncCaret}
+                                onClick={syncCaret}
+                                onScroll={syncCaret}
+                                onFocus={() => setFocused(true)}
+                                onBlur={() => setFocused(false)}
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="none"
+                                spellCheck={false}
+                                aria-label="Terminal input"
+                                className="w-full bg-transparent outline-none border-none p-0"
+                                style={{ font: 'inherit', color: '#f2ede4', caretColor: 'transparent' }}
+                            />
+                            <span
+                                key={caret.pos}
+                                aria-hidden="true"
+                                className="absolute pointer-events-none flex items-center justify-center overflow-hidden"
+                                style={{
+                                    ...CURSOR_SHAPES[CURSOR_STYLE],
+                                    left: `calc(${caret.pos}ch - ${caret.scroll}px)`,
+                                    background: focused ? 'var(--color-accent)' : 'transparent',
+                                    border: !focused && CURSOR_STYLE === 'block' ? '1px solid var(--color-accent)' : 'none',
+                                    color: '#161616',
+                                    animation: focused ? 'terminalBlink 1.1s steps(1, end) infinite' : 'none',
+                                }}
+                            >
+                                {focused && CURSOR_STYLE === 'block' ? input[caret.pos] || '\u00a0' : ''}
+                            </span>
+                        </div>
                     </div>
                 </div>
             )}
