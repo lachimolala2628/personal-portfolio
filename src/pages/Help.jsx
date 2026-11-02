@@ -1,16 +1,7 @@
-import react from 'react';
+import React from 'react'
 
-const terminalCommands = [
-    ['help', 'list every available command'],
-    ['apps', 'list all apps you can open'],
-    ['open <app>', 'open an app window'],
-    ['close <app>', 'close an app window'],
-    ['ls [apps|commands|open]', 'list terminal resources'],
-    ['game [easy|medium|hard]', 'play snake in the terminal'],
-    ['history', 'show recently executed commands'],
-    ['date  /  time', 'show the current date or time'],
-    ['clear', 'clear the terminal'],
-];
+const searchExamples = ['work', 'exp', 'contact', 'resume', 'terminal'];
+const cliStarters = ['help', 'apps', 'open <app>', 'close <app>', 'ls open', 'game hard'];
 
 const Help = () => {
     return (
@@ -20,25 +11,29 @@ const Help = () => {
                     Portfolio Guide
                 </h1>
                 <p className="text-[var(--color-text-secondary)]">
-                    Experience this site as an interactive desktop environment. Launch windows via desktop
-                    icons or the taskbar, then drag, resize, or organize your workspace freely.
+                    This site is a desktop-style portfolio. Open apps in draggable windows, jump to any
+                    window with Search, and control the whole site through commands in Terminal.
                 </p>
             </div>
 
             <div className="flex flex-col gap-2">
-                <h2 className="text-lg font-display text-[var(--color-text-primary)]">Opening Windows</h2>
+                <h2 className="text-lg font-display text-[var(--color-text-primary)]">How To Open Apps</h2>
                 <ul className="flex flex-col gap-2">
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Desktop Icons: Click Resume, Work, or Terminal directly on the screen to open them.</span>
+                        <span>Click the icons on the desktop (Resume, Work, Terminal) or in the bottom app bar to open or focus a window.</span>
                     </li>
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Taskbar: Click any application icon in the bottom bar to open or bring a window into focus.</span>
+                        <span>Use Search in the top bar to type what you want and let the site open the matching window for you.</span>
                     </li>
                     <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
                         <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Global Search: Use the search bar in the top-left to quickly locate and launch any section.</span>
+                        <span>Use Terminal with commands like open and close for command-line control.</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
+                        <span className="text-[var(--color-accent)] mt-1">•</span>
+                        <span>Drag a window by its title bar, and use the buttons in its top-right corner to minimize, maximize, or close it.</span>
                     </li>
                 </ul>
             </div>
@@ -46,58 +41,41 @@ const Help = () => {
             <div className="flex flex-col gap-2">
                 <h2 className="text-lg font-display text-[var(--color-text-primary)]">Quick Search</h2>
                 <p className="text-[var(--color-text-secondary)]">
-                    Click Search in the top navigation bar, type a keyword (e.g., "work", "experience"),
-                    and press Enter to instantly open the corresponding window.
+                    Click Search in the top navigation bar, type part of a window's name, and press Enter
+                    to open it. Partial words work, so "exp" finds Experience.
                 </p>
+                <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-sm text-[var(--color-text-secondary)]">Try:</span>
+                    {searchExamples.map((q) => (
+                        <code
+                            key={q}
+                            className="px-2 py-1 border border-[var(--color-border)] rounded text-xs text-[var(--color-accent)]"
+                        >
+                            {q}
+                        </code>
+                    ))}
+                </div>
             </div>
 
             <div className="flex flex-col gap-2">
-                <h2 className="text-lg font-display text-[var(--color-text-primary)]">Window Controls</h2>
-                <ul className="flex flex-col gap-2">
-                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
-                        <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Move: Drag any window by its header title bar.</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
-                        <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Manage: Use the controls in the top-right corner of any window to minimize, maximize, or close it.</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div className="flex flex-col gap-3">
-                <h2 className="text-lg font-display text-[var(--color-text-primary)]">Terminal</h2>
+                <h2 className="text-lg font-display text-[var(--color-text-primary)]">CLI Quick Start</h2>
                 <p className="text-[var(--color-text-secondary)]">
-                    Open the Terminal icon on the desktop and type commands to control the site. Start with
-                    help to see everything available.
+                    Open the Terminal app and run commands. Good starters:
                 </p>
-
-                <div className="border border-[var(--color-border)] rounded-md overflow-hidden">
-                    <div className="flex flex-col divide-y divide-[var(--color-border)]">
-                        {terminalCommands.map(([command, description]) => (
-                            <div
-                                key={command}
-                                className="px-3 py-2 flex flex-col gap-0.5 sm:flex-row sm:gap-4"
-                            >
-                                <code className="text-xs text-[var(--color-accent)] sm:w-52 sm:shrink-0">
-                                    {command}
-                                </code>
-                                <span className="text-sm text-[var(--color-text-secondary)]">{description}</span>
-                            </div>
-                        ))}
-                    </div>
+                <div className="flex flex-wrap gap-2">
+                    {cliStarters.map((c) => (
+                        <code
+                            key={c}
+                            className="px-2 py-1 border border-[var(--color-border)] rounded text-xs text-[var(--color-accent)]"
+                        >
+                            {c}
+                        </code>
+                    ))}
                 </div>
-
-                <ul className="flex flex-col gap-2">
-                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
-                        <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Press Tab to autocomplete commands and app names, and the Up and Down arrows to browse earlier commands.</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-[var(--color-text-secondary)]">
-                        <span className="text-[var(--color-accent)] mt-1">•</span>
-                        <span>Snake game: use the arrow keys to move, P to pause, R to restart, and Q or Esc to quit. On easy, the walls wrap around.</span>
-                    </li>
-                </ul>
+                <p className="text-sm text-[var(--color-text-secondary)]">
+                    Press Tab to autocomplete, and the Up and Down arrows to bring back earlier commands.
+                    Type game to play a round of snake.
+                </p>
             </div>
         </div>
     );
