@@ -22,14 +22,16 @@ const CURSOR_SHAPES = {
 const COMMANDS = [
     { name: 'apps', usage: 'apps', description: 'list all available apps you can open' },
     { name: 'clear', usage: 'clear', description: 'clear the terminal' },
-    { name: 'close', usage: 'close <app name>', description: 'close an app window' },
+    // { name: 'close', usage: 'close <app name>', description: 'close an app window' },
     { name: 'date', usage: 'date', description: 'show the current date' },
     { name: 'game', usage: 'game [easy|medium|hard]', description: 'start terminal snake and choose a difficulty' },
     { name: 'help', usage: 'help', description: 'list every available command' },
     { name: 'history', usage: 'history', description: 'show recently executed commands' },
     { name: 'ls', usage: 'ls [apps|commands|open]', description: 'list terminal resources' },
-    { name: 'open', usage: 'open <app name>', description: 'open an app window' },
+    // { name: 'open', usage: 'open <app name>', description: 'open an app window' },
     { name: 'time', usage: 'time', description: 'show the current time' },
+    { name: 'open', usage: 'open <app name|all>', description: 'open an app window, or all of them' },
+    { name: 'close', usage: 'close <app name|all>', description: 'close an app window, or all of them' },
 ];
 
 const APP_IDS = Object.values(WINDOW_IDS);
@@ -56,8 +58,8 @@ const lineClass = (type) => {
 
 // ---- Tab autocomplete helpers ----
 const ARG_OPTIONS = {
-    open: () => APP_IDS.map((id) => appTitle(id).toLowerCase()),
-    close: () => APP_IDS.map((id) => appTitle(id).toLowerCase()),
+    open: () => [...APP_IDS.map((id) => appTitle(id).toLowerCase()), 'all'],
+    close: () => [...APP_IDS.map((id) => appTitle(id).toLowerCase()), 'all'],
     game: () => DIFFICULTIES,
     ls: () => ['apps', 'commands', 'open'],
 };
@@ -105,6 +107,8 @@ const Terminal = () => {
     const windows = useWindowStore((s) => s.windows);
     const openWindow = useWindowStore((s) => s.openWindow);
     const closeWindow = useWindowStore((s) => s.closeWindow);
+    const focusWindow = useWindowStore((s) => s.focusWindow);
+    const closeProject = useProjectWindowStore((s) => s.closeProject);
     const openProjects = useProjectWindowStore((s) => s.openProjects);
     const activeType = useZIndexStore((s) => s.activeType);
     const activeId = useZIndexStore((s) => s.activeId);
@@ -228,9 +232,22 @@ const Terminal = () => {
 
             case 'open': {
                 if (!argText) {
-                    result = [err('usage: open <app name>')];
+                    result = [err('usage: open <app name|all>')];
                     break;
                 }
+
+                if (argText.toLowerCase() === 'all') {
+                    if (isMobile) {
+                        result = [err('open all: not available on small screens, where only one window can be open at a time.')];
+                        break;
+                    }
+                    const targets = APP_IDS.filter((id) => id !== WINDOW_IDS.TERMINAL);
+                    targets.forEach((id) => openWindow(id, false));
+                    focusWindow(WINDOW_IDS.TERMINAL);
+                    result = [out(`opened ${targets.length} windows.`)];
+                    break;
+                }
+
                 const id = findApp(argText);
                 if (!id) {
                     result = [err(`open: app not found: ${argText}. Try 'apps' to see what's available.`)];
@@ -243,9 +260,30 @@ const Terminal = () => {
 
             case 'close': {
                 if (!argText) {
-                    result = [err('usage: close <app name>')];
+                    result = [err('usage: close <app name|all>')];
                     break;
                 }
+
+                if (argText.toLowerCase() === 'all') {
+                    const openApps = APP_IDS.filter(
+                        (id) => id !== WINDOW_IDS.TERMINAL && windows[id]?.isOpen
+                    );
+                    const openProjectSlugs = Object.keys(openProjects);
+                    openApps.forEach((id) => closeWindow(id));
+                    openProjectSlugs.forEach((slug) => closeProject(slug));
+                    focusWindow(WINDOW_IDS.TERMINAL);
+
+                    const total = openApps.length + openProjectSlugs.length;
+                    result = [
+                        out(
+                            total
+                                ? `closed ${total} window${total === 1 ? '' : 's'}. The terminal stays open.`
+                                : 'nothing to close. The terminal stays open.'
+                        ),
+                    ];
+                    break;
+                }
+
                 const id = findApp(argText);
                 if (!id) {
                     result = [err(`close: app not found: ${argText}. Try 'apps' to see what's available.`)];
