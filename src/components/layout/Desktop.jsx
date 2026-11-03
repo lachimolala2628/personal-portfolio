@@ -5,6 +5,7 @@ import { useIsMobile } from '../../hooks/useIsMobile';
 import { WINDOW_IDS } from '../../constants/windowConfig';
 import { useProjectWindowStore } from '../../store/projectWindowStore';
 import { wallpapers } from '../../constants/wallpaperConfig';
+import { useDesktopIconStore } from '../../store/desktopIconStore';
 import Window from '../window/Window';
 import About from '../../pages/About';
 import Work from '../../pages/Work';
@@ -18,6 +19,10 @@ import FolderIcon from '../ui/FolderIcon.jsx';
 import FileIcon from '../ui/FileIcon.jsx';
 import Terminal from '../../pages/Terminal.jsx';
 import TerminalIcon from '../ui/TerminalIcon.jsx';
+import DraggableDesktopIcon from './DraggableDesktopIcon';
+
+const NAVBAR_HEIGHT = 48;
+const defaultIconPosition = (index) => ({ x: 16, y: 16 + index * 104 });
 
 const pageComponents = {
     [WINDOW_IDS.ABOUT]: About,
@@ -41,7 +46,11 @@ const Desktop = () => {
     const openWindow = useWindowStore((s) => s.openWindow);
     const selectedWallpaper = useSettingsStore((s) => s.selectedWallpaper);
     const openProjects = useProjectWindowStore((s) => s.openProjects);
-    const { isMobile } = useIsMobile();
+    const { isMobile, isTouchDevice, windowWidth, windowHeight } = useIsMobile();
+    const iconPositions = useDesktopIconStore((s) => s.positions);
+    const setIconPosition = useDesktopIconStore((s) => s.setPosition);
+    const canDragIcons = !isTouchDevice;
+    const desktopBounds = { width: windowWidth, height: windowHeight - NAVBAR_HEIGHT };
 
     useEffect(() => {
         initializeApp();
@@ -59,23 +68,36 @@ const Desktop = () => {
                 background: wallpapers.find((w) => w.id === selectedWallpaper)?.gradient,
             }}
         >
-            <div className={iconContainerClass}>
-                {desktopIcons.map((item) => {
-                    const IconComponent = item.icon;
-                    return (
-                        <button
-                            key={item.id}
-                            onClick={() => openWindow(item.id, isMobile)}
-                            className="flex flex-col items-center gap-1 w-20 group"
-                        >
-                            <div className="group-hover:brightness-110 transition">
-                                <IconComponent />
-                            </div>
-                            <span className="text-xs text-white drop-shadow">{item.label}</span>
-                        </button>
-                    );
-                })}
-            </div>
+            {canDragIcons ? (
+                desktopIcons.map((item, index) => (
+                    <DraggableDesktopIcon
+                        key={item.id}
+                        item={item}
+                        position={iconPositions[item.id] || defaultIconPosition(index)}
+                        bounds={desktopBounds}
+                        onOpen={() => openWindow(item.id, isMobile)}
+                        onMove={(pos) => setIconPosition(item.id, pos)}
+                    />
+                ))
+            ) : (
+                <div className={iconContainerClass}>
+                    {desktopIcons.map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                            <button
+                                key={item.id}
+                                onClick={() => openWindow(item.id, isMobile)}
+                                className="flex flex-col items-center gap-1 w-20 group"
+                            >
+                                <div className="group-hover:brightness-110 transition">
+                                    <IconComponent />
+                                </div>
+                                <span className="text-xs text-white drop-shadow">{item.label}</span>
+                            </button>
+                        );
+                    })}
+                </div>
+            )}
 
             {Object.values(WINDOW_IDS).map((id) => {
                 const PageContent = pageComponents[id];
