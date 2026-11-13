@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { useSettingsStore } from '../../store/settingsStore';
 import { wallpapers } from '../../constants/wallpaperConfig';
 import logoLight from '../../assets/images/logo-light.svg';
-import { playUnlockSound } from '../../utils/unlockSound';
+import { playUnlockSound, preloadUnlockSound } from '../../utils/unlockSound';
 
 const UNLOCK_DURATION = 450;
 
@@ -25,6 +25,10 @@ const LockScreen = ({ onUnlock }) => {
         setIsUnlocking(true);
         setTimeout(() => onUnlock(), UNLOCK_DURATION);
     };
+
+    useEffect(() => {
+        preloadUnlockSound();
+    }, []);
 
     const stopClick = (e) => e.stopPropagation();
 
